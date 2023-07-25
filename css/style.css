@@ -1,0 +1,459 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 1vw;
+}
+.boxcontainer {
+  margin: 0 auto;
+}
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+.mySlides img{
+  width:40%
+}
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+.prev{
+    left: 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.row {
+  float: left;
+  width: 100%;
+}
+.row li{
+  list-style: none;
+  
+}
+.spcl-item{
+  
+  border-bottom:2px solid greenyellow ;
+}
+.spcl-item a{
+  display: flex;
+  align-items: center;
+  margin: 30px 0;
+  text-decoration:none;
+}
+.spcl-item a img{
+  width: 80px;
+  margin: 0 10px;
+}
+.spcl-item span{
+  font-size: 15px;
+}
+.spcl-item p{
+  font-size: 10px;
+  text-decoration: none;
+  
+}
+.pt {
+  padding-top: 30px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+.mb {
+  margin-bottom: 20px;
+}
+.mr {
+  margin-right: 2%;
+}
+.mt {
+  margin-top: 40px;
+}
+.header {
+  background: rgb(113, 170, 113);
+  color: aliceblue;
+  border-radius: 5px;
+}
+.header h1 {
+  font-size: 1.8vw;
+  margin: 25px 40px;
+}
+.menu {
+  background: #000;
+  font-size: 0.8vw;
+  color: aliceblue;
+  border-radius: 5px;
+}
+.menu ul {
+  padding: 10px 10px;
+}
+.menu ul li {
+  display: inline;
+  list-style-type: none;
+  padding: 0px 15px;
+}
+.menu ul li a {
+  text-decoration: none;
+  color: #ccc;
+  transition: 0.5s;
+}
+.menu ul li a:hover {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1vw;
+}
+.boxleft {
+  float: left;
+  width: 76%;
+}
+.boxright {
+  float: left;
+  width: 22%;
+}
+.title {
+  padding: 10px;
+  color: #333;
+  background: rgb(113, 170, 113);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  font-size: 20px;
+}
+.title-trangchu-admin button{
+font-size: 20px;
+padding: 10px 20px;
+background: rgb(113, 170, 113);
+border-radius: 10px;
+cursor: pointer;
+border: none;
+}
+.title-trangchu-admin h1{
+  font-size: 25px;
+text-decoration: underline;
+}
+.title-trangchu-admin button:hover{
+  color: white;
+  transition: 0.3s;
+}
+
+.content {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  min-height: 200px;
+  padding: 20px;
+}
+.content_img{
+  text-align: center;
+  margin: 20px 0;
+}
+.content li {
+  margin-left: 50px;
+  font-size: 20px;
+  line-height: 40px;
+}
+.content p{
+  font-size: 20px;
+}
+.content li span{
+  font-size: 25px;
+  font-weight: 700;
+  color: green;
+}
+
+.formtk {
+  line-height: 150%;
+}
+
+input[type="text"],input[type="password"],input[type="email"]{
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+.formtk input[type="checkbox"] {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.formtk input[type="submit"],
+.formcontent input[type="submit"],
+.formcontent input[type="reset"],
+.formcontent input[type="button"] {
+  min-width: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+h2{color: red;}
+input[type="submit"],input[type="reset"],input[type="button"]{
+  min-width: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 10px 10px 0;
+  cursor: pointer;
+}
+input[type="submit"]:hover,input[type="reset"]:hover,input[type="button"]:hover{
+  background-color: #060;
+  transition: 0.5s;
+  color: #ffffff;
+}
+
+.formtk li a {
+  color: teal;
+  text-decoration: none;
+}
+.formtk li a:hover {
+  color: #060;
+  text-decoration: underline;
+}
+.boxfooter {
+  padding: 10px;
+  background: #ccc;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border: 1px solid #ccc;
+}
+.banner {
+  min-height: 300px;
+  width: 100%;
+  text-align: center;
+}
+.banner img {
+  height: 300px;
+}
+.box-sp {
+  float: left;
+  width: 31%;
+  min-width: 300px;
+  min-height: 400px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  text-align: center;
+  padding: 15px 0;
+  box-shadow: 10px 10px 10px 10px #eee;
+}
+.box-sp h3{
+  color: green;
+}
+.box-sp p {
+  color: #666;
+}
+.box-sp:hover img{
+  transform: scale(1.1);
+  transition: 0.5s ease-out;
+}
+.content2 {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  min-height: 400px;
+  background-color: #eee;
+}
+.menudoc ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.menudoc ul li {
+  padding: 20px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+.menudoc ul a {
+  color: #666;
+  text-decoration: none;
+}
+.menudoc ul li:hover {
+  background-color: #ccc;
+}
+.searchbox input[type="text"] {
+  width: 100%;
+  padding: 10px 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  text-align: center;
+  color: teal;
+}
+.text{
+  background: rgba(0, 0, 0, 0.7);
+}
+.numbertext{
+  background: rgba(0, 0, 0, 0.7)
+}
+.top10 img {
+  width: 20%;
+  height: 50px;
+  float: left;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.top10 a {
+  color: #666;
+  text-decoration: none;
+}
+.top10 a:hover {
+  color: #000;
+}
+/*
+admin
+*/
+.headeradmin {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  color: #666;
+  border-radius: 5px;
+  padding: 0px 20px;
+}
+.headeradmin h1 {
+  font-size: 2vw;
+}
+.formtitle {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  color: #666;
+  border-radius: 5px;
+  padding: 0px 20px;
+}
+.formcontent {
+  padding: 20px 0;
+}
+.formds table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #999;
+}
+.formds table th:nth-child(1) {
+  width: 5%;
+  background-color: teal;
+}
+.formds table th:nth-child(2) {
+  width: 10%;
+  background-color: tomato;
+}
+.formds table th:nth-child(3) {
+  width: 40%;
+  background-color: #ccc;
+}
+.formds table th:nth-child(4) {
+  width: 20%;
+  background-color: teal;
+}
+.formds table th:nth-child(5) {
+  width: 20%;
+  background-color: tomato;
+}
+.formds table th:nth-child(6) {
+  width: 20%;
+  background-color: teal;
+}
+.formds table th:nth-child(7) {
+  width: 20%;
+  background-color: tomato;
+}
+.formds table td {
+  padding: 10px 20px;
+  border: 1px solid #999;
+  min-width: 150px;
+  text-align: center;
+}
+.box-sp img{
+  max-width: 200px;
+}
+
+.content img{
+  max-width: 200px;
+}
+
+#myChart{
+  position: absolute;
+  top: 25%;
+  left: 20%;
+  width:100%; 
+  max-width:1000px; 
+  height:500px;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {background-color: #ddd;}
