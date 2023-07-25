@@ -12,9 +12,11 @@ function load_taikhoan_vaitro()
     return $vaitro;
 }
 
-function insert_taikhoan($ho_ten, $mat_khau, $email, $hinh, $vai_tro, $kich_hoat)
+function insert_taikhoan($ten_kh, $email, $matkhau,$vai_tro, $dia_chi)
 {
-    $sql = "INSERT INTO `khach_hang` (`ho_ten`, `mat_khau`, `email`, `hinh`,`vai_tro`,`kich_hoat`) VALUES ('$ho_ten', '$mat_khau', '$email', '$hinh', b'$vai_tro','$kich_hoat')";
+    $sql = "INSERT INTO `khach_hang` 
+    (`ten_kh`, `email`, `matkhau`, `vai_tro`, `dia_chi`) 
+    VALUES ('$ten_kh', '$email', '$matkhau', b'$vai_tro', '$dia_chi')";
     pdo_execute($sql);
 }
 
@@ -22,7 +24,7 @@ function loadone_taikhoan($email, $password)
 {
     $sql = "SELECT * FROM `khach_hang`where `email`='$email'";
     if ($password != "") {
-        $sql .= "and `mat_khau`='$password'";
+        $sql .= "and `matkhau`='$password'";
     }
     $sp = pdo_query_one($sql);
     return $sp;

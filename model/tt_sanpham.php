@@ -11,6 +11,12 @@ function loadone_tt_sanpham($id)
     $sanpham = pdo_query_one($sql);
     return $sanpham;
 }
+function loadall_tt_sanpham_byidsp($id)
+{
+    $sql = "SELECT * FROM `sp_variants` where `ma_sp`='$id'";
+    $sanpham = pdo_query($sql);
+    return $sanpham;
+}
 function insert_tt_sanpham($ma_sp, $ma_mau, $ma_size)
 {
     $sql = "INSERT INTO `sp_variants` 
@@ -18,8 +24,9 @@ function insert_tt_sanpham($ma_sp, $ma_mau, $ma_size)
     VALUES ('$ma_sp', '$ma_mau', '$ma_size')";
     pdo_execute($sql);
 }
-function update_tt_sanpham($mbt,$ma_sp, $ma_mau, $ma_size){
-    $sql="UPDATE `sp_variants` 
+function update_tt_sanpham($mbt, $ma_sp, $ma_mau, $ma_size)
+{
+    $sql = "UPDATE `sp_variants` 
     SET `ma_sp` = '$ma_sp', `ma_mau` = '$ma_mau', `ma_size` = '$ma_size' 
     WHERE `sp_variants`.`ma_bien_the` = '$mbt'";
     pdo_execute($sql);
@@ -31,11 +38,11 @@ function filter_tt_sanpham($keyword, $color, $size)
         $findkyw = pdo_query("Select * from `san_pham` 
         where `ten_sp` like '%$keyword%'");
         $list_match = [];
-        for ($i=0; $i < count($findkyw) ; $i++) { 
-            array_push($list_match,$findkyw[$i]['ma_sp']);
+        for ($i = 0; $i < count($findkyw); $i++) {
+            array_push($list_match, $findkyw[$i]['ma_sp']);
         }
-        $list_match = implode(",",$list_match);
-        $sql.=" and `ma_sp` in ($list_match)";
+        $list_match = implode(",", $list_match);
+        $sql .= " and `ma_sp` in ($list_match)";
     }
     if ($color > 0) {
         $sql .= " and `ma_mau`= '$color'";
@@ -47,8 +54,14 @@ function filter_tt_sanpham($keyword, $color, $size)
     $sanpham = pdo_query($sql);
     return $sanpham;
 }
-function delete_tt_sp($id){
+function delete_tt_sp($id)
+{
     $sql = "DELETE FROM sp_variants WHERE `sp_variants`.`ma_bien_the` = '$id'";
+    pdo_execute($sql);
+}
+function delete_tt_sp_byIDSP($id)
+{
+    $sql = "DELETE FROM sp_variants WHERE `sp_variants`.`ma_sp` = '$id'";
     pdo_execute($sql);
 }
 ?>

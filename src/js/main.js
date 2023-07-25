@@ -57,11 +57,11 @@ function showProduct() {
   if (x.style.display == "block") {
     x.style.display = "none"
     x.style.transition=".6s";
-    x.style.transform(screenX)="0"
+    
   } else {
     x.style.display = "block"
     x.style.zIndex="100"
-    x.style.transform(screenX)="100%"
+    
   }
 }
 // const Heart = document.querySelector(".heart-name-item-image-product");

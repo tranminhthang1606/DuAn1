@@ -32,27 +32,40 @@
     <div id="main">
 
         <div class="SignIn container">
-            <form action="">
+            <form action="index.php?act=login" method="post">
                 <div class="form-SignIn">
-                    <div class="left-form-Sign-In">
 
+                    <div class="left-form-Sign-In">
+                        <div class="inpt-form-sign-in">
+                            <?php
+                            if (isset($thongbao)) {
+                                ?>
+                                <h2>
+                                    <?php echo $thongbao ?>
+                                </h2>
+                                <?php
+                            }
+
+                            ?>
+                        </div>
                         <div class="inpt-form-sign-in">
                             <p>Email :</p>
-                            <input type="text" id="email" placeholder="Enter your Email ">
+                            <input type="text" id="email" name="email" placeholder="Enter your Email ">
                             <span class="error-email"></span>
                         </div>
                         <div class="inpt-form-sign-in">
                             <p>Password :</p>
-                            <input type="password" placeholder="Enter your Password ">
+                            <input type="password" name="password" placeholder="Enter your Password ">
                         </div>
                         <div class="btn-signIn">
                             <div class="left-btn-signIn">
                                 <p>Do not have an account ?</p> <a href="index.php?act=sign_up"> Sign Up</a>
                             </div>
                             <div class="right-btn-signnIn">
-                                <button type="submit">Sign In</button>
+                                <input type="submit" name="sign_in" value="Sign In">
                             </div>
                         </div>
+
                     </div>
                     <div class="right-form-SignIn">
                         <img src="https://static.vecteezy.com/system/resources/previews/003/689/228/original/online-registration-or-sign-up-login-for-account-on-smartphone-app-user-interface-with-secure-password-mobile-application-for-ui-web-banner-access-cartoon-people-illustration-vector.jpg"

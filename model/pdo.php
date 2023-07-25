@@ -3,7 +3,7 @@
  * Mở kết nối đến CSDL sử dụng PDO
  */
 function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=cozashop_db;charset=utf8";
+    $dburl = "mysql:host=localhost;dbname=coza_shop_db;charset=utf8";
     $username = 'root';
     $password = '';
 
@@ -50,9 +50,7 @@ function pdo_query($sql){
     catch(PDOException $e){
         throw $e;
     }
-    finally{
-        unset($conn);
-    }
+    
 }
 /**
  * Thực thi câu lệnh sql truy vấn một bản ghi
@@ -73,9 +71,7 @@ function pdo_query_one($sql){
     catch(PDOException $e){
         throw $e;
     }
-    finally{
-        unset($conn);
-    }
+    
 }
 // /**
 //  * Thực thi câu lệnh sql truy vấn một giá trị

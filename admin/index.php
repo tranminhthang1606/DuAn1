@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 include "../model/pdo.php";
 include "../model/danhmuc.php";
 include "../model/sanpham.php";
@@ -33,14 +36,13 @@ if (isset($_GET['act'])) {
                     $tensp = "";
                     $thongbaoTensp = "Bạn nhập sai định dạng tên";
                 }
-                $floatDongia = (double) $_POST['dongia'];
-                if ($_POST['dongia'] != "" && is_nan($floatDongia) == false) {
-                    $dongia = $floatDongia;
+                if ($_POST['dongia'] != "" && is_string((float)$_POST['dongia']) == false) {
+                    $dongia = $_POST['dongia'];
                 } else {
                     $dongia = "";
                     $thongbaoDongia = "Bạn phải nhập số vào giá sản phẩm";
                 }
-                if ($_POST['giamgia'] != "" && is_nan($_POST['giamgia']) == false) {
+                if ($_POST['giamgia'] != "" && is_string((float)$_POST['giamgia']) == false) {
                     $giamgia = $_POST['giamgia'];
                 } else {
                     $giamgia = "";
@@ -52,7 +54,7 @@ if (isset($_GET['act'])) {
                 $mota = $_POST['mota'];
                 include "sanpham/upload.php";
                 global $file_name;
-                if ($tensp != "" && $ngaynhap != "" && $loai != "" && is_nan($dongia) == false && is_nan($slx) == false && $checked == true) {
+                if ($tensp != "" && $ngaynhap != "" && $loai != "" && is_string((int)$slx) == false && $checked == true) {
                     insert_sanpham($tensp, $dongia, $giamgia, $mota, $file_name, $loai, $ngaynhap, $slx);
                     $thongbao = "Thêm thành công";
                     $colors = loadall_color();
@@ -62,6 +64,7 @@ if (isset($_GET['act'])) {
                 } else {
                     $thongbao = "Hãy kiểm tra lại định dạng";
                 }
+                print_r(gettype($_POST['dongia']));
             }
             include "sanpham/add.php";
             break;
@@ -71,17 +74,21 @@ if (isset($_GET['act'])) {
             include "tt_sanpham/add.php";
             break;
         case "add_tt_sp":
+           
             if (isset($_POST['them_tt_sp']) && $_POST['them_tt_sp']) {
                 $ma_sp = $_POST['ma_sp'];
-                $current_ma_sp = [];
-                $list_tt_sp = loadall_tt_sanpham();
-                for ($i = 0; $i < count($list_tt_sp); $i++) {
-                    array_push($current_ma_sp, $list_tt_sp[$i]['ma_sp']);
-                }
-                $current_ma_sp = array_unique($current_ma_sp);
                 $color = $_POST['color'];
                 $size = $_POST['size'];
-                if (in_array($ma_sp,$current_ma_sp)) {
+                $current_ma_size = [];
+                $current_ma_color = [];
+                $list_tt_sp = loadall_tt_sanpham_byidsp($ma_sp);
+                for ($i = 0; $i < count($list_tt_sp); $i++) {
+                    array_push($current_ma_size, $list_tt_sp[$i]['ma_size']);
+                    array_push($current_ma_color, $list_tt_sp[$i]['ma_mau']);
+                }
+                $current_ma_size = array_unique($current_ma_size);
+                $current_ma_color = array_unique($current_ma_color);
+                if (!in_array($color, $current_ma_color)&&!in_array($size,$current_ma_size)) {
                     insert_tt_sanpham($ma_sp, $color, $size);
                     $thongbao = "Thêm thành công";
                 } else {
@@ -144,7 +151,7 @@ if (isset($_GET['act'])) {
         case "xoasp":
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-                delete_binhluan_bySP($id);
+                delete_tt_sp_byIDSP($id);
                 delete_sanpham($id);
             }
             $sanpham = loadall_sanpham();
@@ -191,14 +198,14 @@ if (isset($_GET['act'])) {
                     $thongbaoTensp = "Bạn nhập sai định dạng tên";
                 }
 
-                if ($_POST['dongia'] != "" && is_nan($_POST['dongia']) == false) {
+                if ($_POST['dongia'] != "" && is_string((float)$_POST['dongia']) == false) {
                     $dongia = $_POST['dongia'];
                 } else {
                     $dongia = "";
                     $thongbaoDongia = "Bạn phải nhập số vào giá sản phẩm";
                 }
 
-                if ($_POST['giamgia'] != "" && is_nan($_POST['giamgia']) == false) {
+                if ($_POST['giamgia'] != "" && is_string((float)$_POST['giamgia']) == false) {
                     $giamgia = $_POST['giamgia'];
                 } else {
                     $giamgia = "";
@@ -210,7 +217,7 @@ if (isset($_GET['act'])) {
                 $mota = $_POST['mota'];
                 include "sanpham/upload.php";
                 global $file_name;
-                if ($tensp != "" && $ngaynhap != "" && $loai != "" && is_nan($dongia) == false && is_nan($slx) == false && $checked == true) {
+                if ($tensp != "" && $ngaynhap != "" && $loai != "" && is_string((float)$dongia) == false && is_string((int)$slx) == false && $checked == true) {
                     update_sanpham($id, $tensp, $dongia, $giamgia, $mota, $file_name, $loai, $ngaynhap, $slx);
                     $thongbao = "Cập nhập thành công";
                 } else {
@@ -339,10 +346,9 @@ if (isset($_GET['act'])) {
                     $thongbaoemail = "Bạn nhập sai định dạng email";
                 }
                 $vaitro = $_POST['vaitro'];
-                $kichhoat = $_POST['kichhoat'];
                 include "sanpham/upload.php";
                 if ($username != "" && $password != "" && $email != "" && $checked == true) {
-                    insert_taikhoan($username, $password, $email, $file_name, $vaitro, $kichhoat);
+                    insert_taikhoan($username, $password, $email, $file_name, $vaitro);
                     $thongbao = "Thêm tài khoản thành công";
                 } else {
                     $thongbao = "Cập nhập thất bại";

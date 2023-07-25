@@ -20,6 +20,7 @@
   <!-- <link rel="stylesheet" href="https://fonts.adobe.com/fonts/poppins#details-section+poppins-thin"> -->
   <link rel="stylesheet" href="https://www.dafontfree.net/playfair-display-bold/f59120.html">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <title>COZA STORE_MC</title>
 </head>
 
@@ -36,7 +37,7 @@
         <div class="text-animation">
           <h5>Men Collection 2018</h5>
           <h3>NEW ARRIVALS</h3>
-         <a href="index.php?act=shop"><button>SHOP NOW</button></a>
+          <a href="index.php?act=shop"><button>SHOP NOW</button></a>
         </div>
       </div>
 
@@ -105,320 +106,34 @@
       </div>
 
     </div>
-
     <div class="product">
       <div class="text-product">
         <h3>Product Overview</h3>
         <div class="menu-filter-product">
           <div class="menu-product">
             <ul>
-              <li><a href="">All Products</a></li>
-              <li><a href="">Women</a></li>
-              <li><a href="">Men</a></li>
-              <li><a href="">Bag</a></li>
-              <li><a href="">Shoes</a> </li>
-              <li><a href="">Watches</a></li>
+              <li><a href="index.php?act=home&id=0">All Products</a></li>
+              <?php
+              foreach ($danh_muc as $item) {
+                ?>
+                <li><a href="index.php?act=home&id=<?php echo $item['ma_dm'] ?>"><?php echo $item['ten_dm'] ?></a></li>
+                <?php
+              }
+              ?>
             </ul>
           </div>
           <div class="filter-product">
-            <div class="filter">
-              <i class='bx bx-filter'></i> <span>Filter</span>
-            </div>
-            <div class="search-filter-product">
-              <i class='bx bx-search-alt-2'></i><span>Search</span>
-            </div>
           </div>
         </div>
       </div>
 
       <div class="image-product">
 
-        <div class="item-image-product" data-aos="fade-up">
-          <div class="test">
-            <img src="src/img/product-1.webp" width="100%" alt="">
-          </div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
 
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="item-image-product" data-aos="fade-down">
-          <div class="test"><img src="src/img/product-2.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="item-image-product" data-aos="fade-right">
-          <div class="test"><img src="src/img/product-3.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="item-image-product" data-aos="fade-left">
-          <div class="test"><img src="src/img/product-4.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="item-image-product" data-aos="fade-up-right">
-          <div class="test"><img src="src/img/product-5.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="item-image-product" data-aos="fade-up-left">
-          <div class="test"><img src="src/img/product-6.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="item-image-product" data-aos="fade-down-left">
-          <div class="test"><img src="src/img/product-7.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="item-image-product" data-aos="zoom-in">
-          <div class="test"><img src="src/img/product-8.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="item-image-product" data-aos="zoom-in-up">
-          <div class="test"><img src="src/img/product-9.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="item-image-product" data-aos="zoom-in-down">
-          <div class="test"><img src="src/img/product-10.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="item-image-product" data-aos="zoom-in-left">
-          <div class="test"><img src="src/img/product-11.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="item-image-product" data-aos="zoom-in-right">
-          <div class="test"><img src="src/img/product-12.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-        <div class="item-image-product" data-aos="zoom-in-right">
-          <div class="test"><img src="src/img/product-13.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="item-image-product" data-aos="zoom-in-right">
-          <div class="test"><img src="src/img/product-14.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="item-image-product" data-aos="zoom-in-right">
-          <div class="test"><img src="src/img/product-15.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="item-image-product" data-aos="zoom-in-right">
-          <div class="test"><img src="src/img/product-16.webp" width="100%" alt=""></div>
-          <p><a onclick="showProduct()">Quick View</a></p>
-          <div class="name-item-image-product">
-            <div class="price-name-item-image-product">
-              <p>Esprit Ruffle Shirt</p>
-              <p>$16.64</p>
-            </div>
-            <div class="heart-name-item-image-product">
-              <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-            </div>
-
-          </div>
-
-        </div>
 
       </div>
-
-
-      <div class="btn-product">
-        <a href="">LOAD MORE</a>
+      <div class="btn-product" id="loadmore">
+        LOAD MORE
       </div>
     </div>
 
@@ -428,112 +143,90 @@
   <?php include "views/footer.php" ?>
   <div id="appp">
     <div class="grid">
-      <div class="grid-left">
-        <img src="src/img/product_Sub1.webp" width="80%" alt="">
-        <img src="src/img/product_Sub2.webp" width="80%" alt="">
-        <img src="src/img/product_Sub3.webp" width="80%" alt="">
-      </div>
-      <div class="grid-mid">
 
-
-        <div class="img">
-          <img id="img" src="src/img/product_Sub2.webp" width="100%" alt="">
-        </div>
-
-
-        <div class="icon-next-pre">
-
-          <i class='bx bx-exit-fullscreen'></i>
-
-          <div class="next-pre">
-            <i class='bx bx-chevron-left' onclick="pre()"></i>
-            <i class='bx bx-chevron-right' onclick="next()"></i>
-          </div>
-
-        </div>
-
-
-
-      </div>
-
-      <div class="grid-right">
-        <p>Lightweight Jacket</p>
-        <h4>$58.79</h4>
-        <p>Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligu
-          la. Mauris consequat ornare feugiat.</p>
-
-
-        <div class="option-product">
-          <form action="" onsubmit=" return validate()">
-            <table>
-              <tr>
-                <td>
-                  Size
-                </td>
-                <td>
-                  <select id="size">
-                    <option value="0">Choose an option</option>
-                    <option value="1">Size S</option>
-                    <option value="2">Size M</option>
-                    <option value="3">Size L</option>
-                    <option value="4">Size XL</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Color</td>
-                <td>
-                  <select id="color">
-                    <option value="0">Choose an option</option>
-                    <option value="1">Red</option>
-                    <option value="2">Blue</option>
-                    <option value="3">White</option>
-                    <option value="4">Gray</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>
-                  <button>-</button>
-                  <input type="number" min="0">
-                  <button>+</button>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>
-                  <input type="submit" name="" value="ADD TO CART" id="a">
-                </td>
-              </tr>
-            </table>
-          </form>
-        </div>
-
-
-
-        <div class="icon-product">
-          <i class='bx bxs-heart'></i>
-          <i class='bx bxl-facebook-circle'></i>
-          <i class='bx bxl-twitter'></i>
-          <i class='bx bxl-google-plus'></i>
-        </div>
-        <div class="close">
-          <i onclick="showProduct()" class='bx bx-x-circle bx-tada'></i>
-        </div>
-      </div>
     </div>
 
 
 
   </div>
-
   <script src="src/js/main.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <script>
     AOS.init();
   </script>
+  <script>
+    $(document)
+      .on("click", '.show_product', function () {
+        var productId = $(this).data('id')
+        $.ajax({
+          url: "handle_product.php",
+          type: 'post',
+          data: {
+            productId: productId
+          },
+          success: function (result) {
+            $('.grid').html(result)
+          }
+        })
+      })
+
+  </script>
+  <script>
+    $(document).ready(function () {
+      let start = 0;
+      const limit = 8;
+      function loadmore(limit, start) {
+        $.ajax({
+          url: "fetch_data.php",
+          type: 'get',
+          data: {
+            limit: limit,
+            start: start
+          },
+          dataType: 'json',
+          success: function (result) {
+            console.log(result)
+            const data = result.data;
+            let html = ``;
+            $.each(data, function (index, product) {
+              html += `<div class="item-image-product" data-aos="fade-up">
+            <div class="test">
+              <img src="upload/${product['anh_sp']}" width="100%" alt="">
+            </div>
+            <p><a class="show_product" onclick="showProduct()" data-id=${product['ma_sp']}>Quick View</a></p>
+            <div class="name-item-image-product">
+              <div class="price-name-item-image-product">
+                <p>
+                  ${product['ten_sp']}
+                </p>
+                <p>
+                  ${product['don_gia']}
+                </p>
+              </div>
+              <div class="heart-name-item-image-product">
+
+                <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
+              </div>
+
+            </div>
+
+          </div>`
+            })
+            $('.image-product').append(html);
+          }
+        })
+      }
+      loadmore(limit, start);
+      $('#loadmore').click(function () {
+        start += limit;
+        loadmore(limit, start)
+      })
+    })
+
+  </script>
+
+
 </body>
 
 </html>
