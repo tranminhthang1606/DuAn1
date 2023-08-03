@@ -3,14 +3,14 @@
     <div class="header-top">
         <div class="sub-header-top">
             <div class="left-title">
-                <h4>Website designed by Manh Cuong</h4>
+                <h4>Coza Shop</h4>
             </div>
             <div class="list-header">
                 <ul>
-                    <li><a href=""> Help & FAQs</a></li>
-                    <li><a href=""> My Account</a></li>
-                    <li><a href=""> EN</a></li>
-                    <li><a href=""> USD</a></li>
+                    <li><a href=""> Đẹp</a></li>
+                    <li><a href=""> Trẻ</a></li>
+                    <li><a href=""> Khỏe</a></li>
+
                 </ul>
             </div>
         </div>
@@ -29,11 +29,7 @@
                 <ul>
                     <li>
                         <a href="index.php?act=home" id="home"> Home
-                            <ul class="sub-menu">
-                                <li><a href="">Homepage 1</a></li>
-                                <li><a href="">Homepage 1</a></li>
-                                <li><a href="">Homepage 1</a></li>
-                            </ul>
+
                         </a>
                     </li>
                     <li><a href="index.php?act=shop">Shop</a></li>
@@ -43,11 +39,12 @@
                 </ul>
             </div>
             <div class="list-icon" id="list-icon">
-                <div class="icons search" id="iconSearch">
-
-                    <input type="text" id="input_search" placeholder="New Product..?">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
+                <form action="index.php?act=shop" method="post">
+                    <div class="icons search" id="iconSearch">
+                        <input type="text" id="input_search" name="keyword" placeholder="New Product..?">
+                        <button type="submit" name="search"> <i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </form>
                 <div class="icons cart">
                     <a href="index.php?act=cart"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
@@ -55,9 +52,20 @@
                     <?php
                     if (isset($_SESSION['name'])) {
                         ?>
-                        <p>
+                        <div class="account">
                             <?php echo $_SESSION['name'] ?>
-                        </p>
+                            <div class="account_option">
+                                <?php
+                                if (isset($_SESSION['vaitro']) && $_SESSION['vaitro'] > 0) {
+                                    ?>
+                                    <h5><a href="admin/index.php">Quản trị</a></h5>
+                                    <?php
+                                }
+                                ?>
+                                <h5><a href="index.php?act=logout">Đăng Xuất</a></h5>
+
+                            </div>
+                        </div>
                         <?php
                     } else {
                         ?>

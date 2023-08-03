@@ -18,6 +18,21 @@ function scrollFunction() {
   }
 }
 
+document.getElementById('appp').style.display = "none"
+function showProduct() {
+  var x = document.getElementById('appp');
+  window.scrollTo(0,0)
+  if (x.style.display == "block") {
+    x.style.display = "none"
+    x.style.transition=".6s";
+    x.style.transform(screenX)="0"
+  } else {
+    x.style.display = "block"
+    x.style.zIndex="100"
+    x.style.transform(screenX)="100%"  
+  }
+}
+
 //----------------dark mode----------------//
 
 const app = document.querySelector("#app");

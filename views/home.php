@@ -54,57 +54,33 @@
   <div id="main">
 
     <div id="content">
+      <?php
+      $i = 1;
+      foreach ($dm_rand_3 as $item) {
 
-      <div data-aos="fade-up" class="content-text-img">
-        <div class="content-img">
-          <img id="image1" src="src/img/ads1.jpg" alt="">
-        </div>
-        <div class="text-content">
-          <div class="text-content-1">
-            <h2>Women</h2>
-            <p>Spring 2018</p>
+        ?>
+        <div data-aos="fade-up" class="content-text-img">
+          <div class="content-img">
+            <img id="image1" src="src/img/ads<?php echo $i ?>.jpg" alt="">
           </div>
-          <div class="content-text-2">
-            <h3>Shop Now</h3>
-            <span></span>
-          </div>
-        </div>
-      </div>
-
-
-      <div data-aos="fade-left" class="content-text-img">
-        <div class="content-img">
-          <img id="image1" src="src/img/ads2.jpg" alt="">
-        </div>
-        <div class="text-content">
-          <div class="text-content-1">
-            <h2>Men</h2>
-            <p>Spring 2018</p>
-          </div>
-          <div class="content-text-2">
-            <h3>Shop Now</h3>
-            <span></span>
+          <div class="text-content">
+            <div class="text-content-1">
+              <h2>
+                <?php echo $item['ten_dm'] ?>
+              </h2>
+              <p>Let's Try</p>
+            </div>
+            <div class="content-text-2">
+             <a href="index.php?act=shop"> <h3>Shop Now</h3></a>
+              <span></span>
+            </div>
           </div>
         </div>
-      </div>
+        <?php
+        $i += 1;
+      }
 
-
-      <div data-aos="fade-up" class="content-text-img">
-        <div class="content-img">
-          <img id="image1" src="src/img/ads3.jpg" alt="">
-        </div>
-        <div class="text-content">
-          <div class="text-content-1">
-            <h2>Accessories</h2>
-            <p>New Trend</p>
-          </div>
-          <div class="content-text-2">
-            <h3>Shop Now</h3>
-            <span></span>
-          </div>
-        </div>
-      </div>
-
+      ?>
     </div>
     <div class="product">
       <div class="text-product">
@@ -186,7 +162,6 @@
           },
           dataType: 'json',
           success: function (result) {
-            console.log(result)
             const data = result.data;
             let html = ``;
             $.each(data, function (index, product) {
@@ -201,7 +176,7 @@
                   ${product['ten_sp']}
                 </p>
                 <p>
-                  ${product['don_gia']}
+                  ${product['don_gia']} VNĐ
                 </p>
               </div>
               <div class="heart-name-item-image-product">

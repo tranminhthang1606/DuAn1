@@ -52,7 +52,7 @@
             </div>
             <div class="text-local-footer">
                 <p>Copyright ©2022 All rights reserved | This template is made with <i class='bx bx-heart'></i> by
-                    <span style="color: #007bff;cursor: pointer;">Cường đẹp trai vkl</span>
+                    <span style="color: #007bff;cursor: pointer;">Coza Shop</span>
                 </p>
             </div>
         </div>

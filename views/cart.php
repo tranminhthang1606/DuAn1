@@ -47,6 +47,7 @@
                         <th>PRODUCT</th>
                         <th>PRICE</th>
                         <th>QUANTITY</th>
+                        <th>COLOR SIZE</th>
                         <th>TOTAL</th>
                     </tr>
 
@@ -73,28 +74,29 @@
                                         data-product='<?php echo $item['id'] ?>'>
                                     <i class='bx bxs-up-arrow'></i>
                                 </td>
+                                <td>
+                                    <?php echo $item['color'] ?>/
+                                    <?php echo $item['size'] ?>
+                                </td>
                                 <td>$ <span class='total_sp'>
                                         <?php echo ($item['price'] * $item['quantity']) ?>
                                     </span></td>
                             </tr>
                             <?php
                         }
-                    } else {
-                        echo "Giỏ hàng trống";
                     } ?>
 
 
                     <tr>
-                        <td id="total_table" colspan="4">TOTAL</td>
+                        <td id="total_table" colspan="5">TOTAL</td>
                         <td id="price_total">
                             <?php echo $totalPrice ?>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="5" id="update">
+                        <td colspan="6" id="update">
                             <input type="text" placeholder="Coupon Code">
                             <input type="submit" value="APPLY COUPON">
-                            <input type="submit" value="UPDATE CART">
                         </td>
                     </tr>
                 </table>
@@ -136,7 +138,6 @@
                             <!-- <input type="text" id="state" placeholder="State/country">
                             <input type="text" id="postcode" placeholder="Postcode / Zip"> -->
                             <!-- <input type="submit" name="" value="UPDATE TOTALS" id=""> -->
-
                         </form>
 
                     </div>
@@ -157,26 +158,35 @@
 
                     <button>Submit Payment</button>
                 </form> -->
+
                 <form action="index.php?act=checkout" method="post">
                     <input type="hidden" name="checkout_bill" class="checkout_bill">
-                    <div class="total-cart">
-                        <p>Total</p>
-                        <p>$<span></span></p>
-                    </div>
-
-                    <input type="submit" value="Thanh toán tiền mặt" name="" id="">
+                    <p>Địa chỉ chi tiết</p>
+                    <input type="text" name="address">
+                    <input type="submit" value="Thanh toán tiền mặt" name="cash" id="">
                 </form>
-                <h4>Trả bằng thẻ</h4>
-                <form action="index.php?act=checkout" method="POST">
-                    <input type="hidden" name="totalPrice" class="checkout_bill">
+                <br>
+                <hr>
+                <br>
+                <form action="index.php?act=checkout" method="post">
+                    <input type="hidden" name="checkout_bill" class="checkout_bill">
+                    <p>Địa chỉ chi tiết</p>
+                    <input type="text" name="address">
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="pk_test_51NTOVbJs5O3gpxcMjNWkJJXQWWc0UKOpXbUXGkHJ0DQOmPGyxL06OkmfG8QHNHe23FANnR6RZ5IThaOkHomA8wNN00Wvx26U7W"
-                        data-amount="" data-name="Coza Shop"
-                        data-description="Bill Checkout"
+                        data-amount="" data-name="Coza Shop" data-description="Bill Checkout"
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto"
                         data-currency="usd" data-zip-code="true">
                         </script>
+                        <br>
+                        <br>
+                        <hr>
+                    <div class="total-cart">
+                        <p>Total</p>
+                        <p>$<span></span></p>
+                    </div>        
                 </form>
+
 
             </div>
         </div>
@@ -302,7 +312,7 @@
                     for (let i = 0; i < checkout_bill.length; i++) {
                         checkout_bill[i].setAttribute("value", total_price_value)
                     }
-                    
+
                 }
 
             })

@@ -5,10 +5,6 @@
     <div class="row formcontent">
         <form action="index.php?act=adddm" method="POST">
             <div class="row mb10">
-                <label for="">Mã loại</label><br>
-                <input type="text" name="maloai" disabled><br>
-            </div>
-            <div class="row mb10">
                 <label for="">Tên loại</label><br>
                 <input type="text" name="tenloai"><br>
             </div>

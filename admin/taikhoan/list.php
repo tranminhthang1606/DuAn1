@@ -24,8 +24,6 @@
                     <th>Mã tài khoản</th>
                     <th>Email</th>
                     <th>Tên tài khoản</th>
-                    <th>Mật khẩu</th>
-                    <th>Ảnh tài khoản</th>
                     <th>Vai trò</th>
                 </tr>
                 <form action="index.php?act=delAllTk" method="post">
@@ -41,14 +39,8 @@
                             <?php echo $item['email'] ?>
                         </td>
                         <td>
-                            <?php echo $item['ho_ten'] ?>
-                        </td>
-                        <td>
-                            <?php echo $item['mat_khau'] ?>
-                        </td>
-                        <td>
-                            <img src="../upload/<?php echo $item['hinh'] ?>" alt="" width="100px">
-                        </td>
+                            <?php echo $item['ten_kh'] ?>
+                        </td>               
                         <td>
                             <?php if ($item['vai_tro'] == 0) {
                                 ?>

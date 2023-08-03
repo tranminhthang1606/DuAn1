@@ -8,12 +8,29 @@
 html {
     scroll-behavior: smooth;
 }
-
+#appp{
+    position: absolute;
+    top: 0;
+    
+    
+}
 /* ---------dark, Mode------- */
 .toggle {
     cursor: pointer;
 }
-
+.account {
+    position: relative;
+  }
+  .account_option {
+    display: none;
+    position: absolute;
+    top: 100%;
+    
+  }
+  
+  .account:hover .account_option{
+  display: block;
+  }
 #app {
     transition: .5s linear;
     font-family: Poppins-Bold;
@@ -291,10 +308,14 @@ html {
     background-color: #6775d6;
     transition: .4s;
 }
-
+#header .list-icon .icons button{
+    border: none;
+    background: transparent;
+  }
 #header .list-icon .icons {
     position: relative;
 }
+
 
 #header .list-icon .icons:nth-child(2)::before {
     content: "2";

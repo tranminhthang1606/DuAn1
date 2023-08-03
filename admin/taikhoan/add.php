@@ -40,17 +40,12 @@
                     }
                     ?>
                     <br>
-                    <label for="">Ảnh đại diện :</label>
-                    <input type="file" name="hinh" id="">
-                    <br>
                     <label for="">Vai trò :</label>
                     <select name="vaitro" id="">
                         <option value="0">Khách hàng</option>
                         <option value="1">Admin</option>
                     </select>
                     <br>
-                    <label for="">Kích hoạt</label>
-                    <input type="text" name="kichhoat">
                     <input type="submit" value="Thêm tài khoản" name="addtk">
                     <input type="reset" value="Nhập lại">
                 </form>

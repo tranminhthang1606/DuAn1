@@ -12,11 +12,11 @@ function load_taikhoan_vaitro()
     return $vaitro;
 }
 
-function insert_taikhoan($ten_kh, $email, $matkhau,$vai_tro, $dia_chi)
+function insert_taikhoan($ten_kh, $email, $matkhau, $vai_tro)
 {
     $sql = "INSERT INTO `khach_hang` 
-    (`ten_kh`, `email`, `matkhau`, `vai_tro`, `dia_chi`) 
-    VALUES ('$ten_kh', '$email', '$matkhau', b'$vai_tro', '$dia_chi')";
+    (`ten_kh`, `email`, `matkhau`, `vai_tro`) 
+    VALUES ('$ten_kh', '$email', '$matkhau', '$vai_tro')";
     pdo_execute($sql);
 }
 
@@ -29,9 +29,9 @@ function loadone_taikhoan($email, $password)
     $sp = pdo_query_one($sql);
     return $sp;
 }
-function update_taikhoan($id, $ho_ten, $mat_khau, $email, $hinh, $kich_hoat, $vai_tro)
+function update_taikhoan($id, $ten_kh, $email, $matkhau, $vai_tro)
 {
-    $sql = "UPDATE `khach_hang` SET `ho_ten` = '$ho_ten', `mat_khau` = '$mat_khau', `email` = '$email', `hinh` = '$hinh', `kich_hoat` = '$kich_hoat', `vai_tro` = b'$vai_tro' WHERE `khach_hang`.`ma_kh` = '$id'";
+    $sql = "UPDATE `khach_hang` SET `ten_kh` = '$ten_kh', `matkhau` = '$matkhau', `email` = '$email', `vai_tro` = b'$vai_tro' WHERE `khach_hang`.`ma_kh` = '$id'";
     pdo_execute($sql);
 }
 function loadone_taikhoan_byID($id)

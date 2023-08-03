@@ -5,6 +5,12 @@ function loadall_danhmuc()
     $danhmuc = pdo_query($sql);
     return $danhmuc;
 }
+function loadall_danhmuc_home($start, $limit)
+{
+    $sql = "SELECT * FROM `danh_muc` order by `ma_dm` limit $start,$limit";
+    $dm = pdo_query($sql);
+    return $dm;
+}
 function insert_danhmuc($tendanh_muc)
 {
     $sql = "INSERT INTO `danh_muc` (`ten_dm`) VALUES ('$tendanh_muc')";
@@ -22,9 +28,19 @@ function update_danhmuc($id, $tendanh_muc)
     pdo_execute($sql);
 }
 
-function loadone_danhmuc($id){
+function loadone_danhmuc($id)
+{
     $sql = "SELECT * FROM `danh_muc`where `ma_dm`='$id'";
     $dm = pdo_query_one($sql);
     return $dm;
+}
+
+function random_danhmuc()
+{
+    $sql = "SELECT * FROM `danh_muc` 
+    ORDER BY RAND()
+    LIMIT 3";
+    $sp = pdo_query($sql);
+    return $sp;
 }
 ?>

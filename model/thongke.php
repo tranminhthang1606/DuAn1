@@ -1,8 +1,12 @@
 <?php
 function loadall_thongke(){
-    $sql="select `loai`.`ten_loai` as `tenloai`,`loai`.`ma_loai` as `maloai`,count(`hang_hoa`.`ma_loai`) as `sl`,min(`hang_hoa`.`don_gia`) as `min`,max(`hang_hoa`.`don_gia`) as `max`,avg(`hang_hoa`.`don_gia`) as `trungbinh`";
-$sql.=" from `hang_hoa` join `loai` on `loai`.`ma_loai`=`hang_hoa`.`ma_loai`";
-$sql.=" group by `loai`.`ma_loai` order by `loai`.`ma_loai` desc";
+    $sql="select `danh_muc`.`ten_dm` as `tenloai`,`danh_muc`.`ma_dm` as `maloai`,
+    count(`san_pham`.`ma_dm`) as `sl`,
+    min(`san_pham`.`don_gia`) as `min`,
+    max(`san_pham`.`don_gia`) as `max`,
+    avg(`san_pham`.`don_gia`) as `trungbinh`";
+$sql.=" from `san_pham` join `danh_muc` on `danh_muc`.`ma_dm`=`san_pham`.`ma_dm`";
+$sql.=" group by `danh_muc`.`ma_dm` order by `danh_muc`.`ma_dm` desc";
 $list_thongke = pdo_query($sql);
 return $list_thongke;
 }

@@ -18,6 +18,19 @@ html {
   transition: 0.5s linear;
 }
 
+.account {
+  position: relative;
+}
+.account_option {
+  display: none;
+  position: absolute;
+  top: 100%;
+
+}
+
+.account:hover .account_option{
+display: block;
+}
 .dark {
   background-color: #2f3034;
   transition: 0.5s linear;
@@ -239,7 +252,10 @@ html {
   font-size: 20px;
   margin-right: 20px;
 }
-
+#header .list-icon .icons button {
+  border: none;
+  background: transparent;
+}
 #header .list-icon .icons:hover {
   color: #6c7ae0;
   transition: 0.2s;
@@ -470,7 +486,9 @@ html {
   transform: scaleX(1.2);
   background-color: #fff;
 }
-
+.text-content:hover .content-text-2 a {
+  text-decoration: none;
+}
 .text-content:hover .content-text-2 h3 {
   display: block;
   color: #fff;
@@ -539,39 +557,42 @@ html {
   text-align: left;
   z-index: 1;
 }
-.select_box_color,.select_box_size{
-    width: 100%;
-    border-bottom: 2px solid #888;
-    border-width: 100%;
-    margin-top: 10px;
-    position: relative;
+.select_box_color,
+.select_box_size {
+  width: 100%;
+  border-bottom: 2px solid #888;
+  border-width: 100%;
+  margin-top: 10px;
+  position: relative;
 }
-.color_option,.size_option{
-    position: absolute;
-    right: -50px;
-    top: 0;
-    display: none;
-    padding-left: 50px;
+.color_option,
+.size_option {
+  position: absolute;
+  right: -50px;
+  top: 0;
+  display: none;
+  padding-left: 50px;
 }
-.color_option:hover,.size_option:hover{
+.color_option:hover,
+.size_option:hover {
   background: rgba(128, 128, 128, 0.493);
 }
 
-h5{
-    border-bottom: 2px solid black;
-    margin-bottom: 10px;
+h5 {
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
 }
-h5 a{
+h5 a {
   text-decoration: none;
   color: #888;
 }
-.select_box_color:hover .color_option{
-    display: block;
-    color: #555; 
+.select_box_color:hover .color_option {
+  display: block;
+  color: #555;
 }
-.select_box_size:hover .size_option{
-    display: block;
-    color: #555;
+.select_box_size:hover .size_option {
+  display: block;
+  color: #555;
 }
 
 /* end css select-box */
@@ -596,7 +617,7 @@ h5 a{
   color: white;
 }
 .filter:hover .select_box {
-color: #888;
+  color: #888;
   display: block;
 }
 
@@ -707,21 +728,15 @@ color: #888;
 }
 
 .btn-product {
-  width: 100%;
+  padding: 20px 50px;
   text-align: center;
   margin-top: 100px;
+  cursor: pointer;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-.btn-product a {
-  text-decoration: none;
-  color: #222222;
-  background-color: #e6e6e6;
-  padding: 15px 30px;
-  border-radius: 30px;
-  transition: 0.3s linear;
-}
-
-.btn-product a:hover {
+.btn-product:hover {
   background-color: #515151;
   color: #fff;
   transition: 0.3s linear;
@@ -924,7 +939,7 @@ color: #888;
   display: flex;
 }
 
-.right-btn-signnIn button {
+.right-btn-signnIn input {
   padding: 10px 20px;
   color: #fff;
   border: 1px solid #6774d5;
@@ -933,7 +948,7 @@ color: #888;
   transition: 0.2s linear;
 }
 
-.right-btn-signnIn button:hover {
+.right-btn-signnIn input:hover {
   background-color: #3f53f0;
   transition: 0.2s linear;
   transform: scale(0.8);

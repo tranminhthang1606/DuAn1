@@ -67,7 +67,7 @@ $list_size = loadall_size_bysp($current_ma_size);
                     </td>
                     <td>
                         <select id="size" name="size">
-                            <option value="0">Choose an option</option>
+                            <option value="">Choose an option</option>
                             <?php
                             foreach ($list_size as $item) {
                                 ?>

@@ -11,7 +11,7 @@
             <form action="index.php?act=listsp" method="post">
                 <input type="text" name="keyword">
                 <select name="iddm" id="">
-                    <option value="0">Tất cả</option>
+                    <option value="all">Tất cả</option>
                     <?php
                     $loai = loadall_danhmuc();
 
@@ -49,7 +49,7 @@
                             <img src="../upload/<?php echo $item['anh_sp'] ?>" alt="" width="100px">
                         </td>
                         <td>
-                            <?php echo $item['ma_dm'] ?>
+                            <?php echo $item['ten_dm'] ?>
                         </td>
                         <td><a href="index.php?act=suasp&id=<?php echo $item['ma_sp'] ?>"><input type="button" name=""
                             value="SỬA"></a><a href="index.php?act=xoasp&id=<?php echo $item['ma_sp'] ?>"><input
@@ -60,6 +60,37 @@
                 ?>
 
             </table>
+            <div class="pagination">
+            <?php
+            if ($page != 1) {
+                ?>
+                <a href="index.php?act=listsp&page=<?php echo $page - 1 ?>">&laquo;</a>
+                <?php
+            }
+            ?>
+
+            <?php
+            for ($i = 0; $i < $pages; $i++) {
+                ?>
+                <a class="<?php if ($page == ($i + 1)) {
+                    echo "active";
+                } else {
+                    echo "";
+                } ?>" 
+                href="index.php?act=listsp&page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a>
+                <?php
+            }
+            ?>
+            <?php
+            if ($page != $pages) {
+                ?>
+
+                <a href="index.php?act=listsp&page=<?php echo $page + 1 ?>">&raquo;</a>
+                <?php
+            }
+            ?>
+
+        </div>
         </div>
         <div class="row mb10">
             <input type="button" value="CHỌN TẤT CẢ" id="selectAll">

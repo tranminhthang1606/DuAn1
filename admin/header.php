@@ -22,7 +22,7 @@
                 <li><a href="index.php?act=listsp">Hàng hóa</a></li>
                 <li><a href="index.php?act=list_tt_sp">Thông tin sản phẩm</a></li>
                 <li><a href="index.php?act=dskh">Khách hàng</a></li>
-                <li><a href="index.php?act=dsbl">Bình luận</a></li>
+                <li><a href="index.php?act=payments">Hóa Đơn</a></li>
                 <li><a href="index.php?act=thongke">Thống kê</a></li>
             </ul>
         </div>

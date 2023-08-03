@@ -8,6 +8,7 @@ require_once('vendor/autoload.php'); // Đường dẫn đến autoload.php từ
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['stripeToken'];
     $totalPrice = $_POST['totalPrice'];
+    $address = $_POST['address'];
     try {
         // Tạo một charge trên Stripe
         $charge = \Stripe\Charge::create([
@@ -19,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'source' => $token,
         ]);
 
-        $sql = "INSERT INTO `payments` (`customer_name`,`amount`,`stripe_charge_id`) VALUES ('customer','$totalPrice','$token')";
+        $sql = "INSERT INTO `payments` (`customer_name`,`amount`,`stripe_charge_id`,`address`) VALUES ('customer','$totalPrice','$token','$address')";
         pdo_execute($sql);
 
         // Xử lý sau khi thanh toán thành công (ví dụ: lưu thông tin đơn hàng vào cơ sở dữ liệu)

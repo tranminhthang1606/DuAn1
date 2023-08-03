@@ -15,7 +15,7 @@
                ?>
                     <br>
                     <label for="">Username :</label>
-                    <input type="text" name="username" value="<?php echo $taikhoan_edit['ho_ten'] ?>">
+                    <input type="text" name="username" value="<?php echo $taikhoan_edit['ten_kh'] ?>">
                     <?php
                if(isset($thongbaoname)){
                 ?>
@@ -25,7 +25,7 @@
                ?>
                     <br>
                     <label for="">Password :</label>
-                    <input type="password" name="password" id="" value="<?php echo $taikhoan_edit['mat_khau'] ?>">
+                    <input type="password" name="password" id="" value="<?php echo $taikhoan_edit['matkhau'] ?>">
                     <?php
                if(isset($thongbaopassword)){
                 ?>
@@ -33,10 +33,6 @@
                 <?php
                }        
                ?>
-                    <br>
-                    <label for="">Ảnh đại diện :</label>
-                    <img src="/upload/<?php echo $taikhoan_edit['hinh'] ?>" alt="<?php echo $taikhoan_edit['hinh'] ?>">
-                    <input type="file" name="hinh" id="">
                     <br>
                     <label for="">Vai trò :</label>
                     <select name="vaitro" id="">
@@ -53,8 +49,6 @@
                         <option value="1">Admin</option>
                     </select>
                     <br>
-                    <label for="">Kích hoạt</label>
-                    <input type="text" name="kichhoat" value="<?php echo $taikhoan_edit['kich_hoat'] ?>">
                     <input type="submit" value="Cập nhập tài khoản" name="update">
                     <input type="reset" value="Nhập lại">
                 </form>

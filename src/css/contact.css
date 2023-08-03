@@ -13,12 +13,28 @@ html {
 .toggle {
     cursor: pointer;
 }
-
+#header .list-icon .icons button{
+    border: none;
+    background: transparent;
+  }
 #app {
     transition: .5s linear;
     font-family: Poppins-Bold;
 }
 
+.account {
+    position: relative;
+  }
+  .account_option {
+    display: none;
+    position: absolute;
+    top: 100%;
+   
+  }
+  
+  .account:hover .account_option{
+  display: block;
+  }
 .dark {
     background-color: #2F3034;
     transition: .5s linear;

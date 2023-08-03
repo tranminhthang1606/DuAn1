@@ -112,7 +112,7 @@
                   <?php echo $item['ten_sp'] ?>
                 </p>
                 <p>
-                  <?php echo $item['don_gia'] ?>
+                  <?php echo $item['don_gia'] ?> VNĐ
                 </p>
               </div>
               <div class="heart-name-item-image-product">
@@ -131,9 +131,7 @@
         </div>
 
 
-        <div class="btn-product" data-aos="zoom-in-right">
-          <a href="">LOAD MORE</a>
-        </div>
+        
       </div>
 
     </div>

@@ -42,7 +42,7 @@
                     <h3>Send Us A Message</h3>
                    <form action=""  onsubmit="return validate()">
                     <div class="">
-                        <input type="text" id="address" placeholder=" Your email Address">
+                        <input type="email" id="address" placeholder=" Your email Address">
                     </div>
 
                     <div class="">

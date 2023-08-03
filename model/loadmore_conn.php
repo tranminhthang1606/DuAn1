@@ -2,7 +2,7 @@
 $SERVER = 'localhost';
 $USERNAME ='root';
 $PASSWORD ='';
-$DBNAME='coza_shop_db';
+$DBNAME='cozashop_db_2';
 
 $connect = new mysqli($SERVER,$USERNAME,$PASSWORD,$DBNAME);
 if($connect->connect_error){

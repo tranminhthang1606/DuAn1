@@ -15,7 +15,10 @@ html{
     background-color: #333333a4;
     /* margin-top: -100px; */
 }
-
+#header .list-icon .icons button{
+  border: none;
+  background: transparent;
+}
 .grid {
     display: grid;
     grid-template-columns: 1fr 5fr 4fr;  

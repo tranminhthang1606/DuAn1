@@ -37,27 +37,27 @@ function loadone_sanpham($id)
 
 function filter_sanpham($id, $keyword)
 {
-    $sql = "select * from `san_pham` where 1";
+    $sql = "select * from `san_pham` join `danh_muc` where `san_pham`.`ma_dm`=`danh_muc`.`ma_dm`";
     if ($keyword != "") {
         $sql .= " and `ten_sp` like '%$keyword%'";
     }
-    if ($id > 0) {
-        $sql .= " and `ma_dm`='$id'";
+    if ($id != "all") {
+        $sql .= " and `san_pham`.`ma_dm`='$id'";
     }
     $sql .= " order by `ma_sp` desc";
     $sanpham = pdo_query($sql);
     return $sanpham;
 }
 
-function loadall_sanpham_home($start, $limit)
+function loadall_sanpham_admin($start, $limit)
 {
-    $sql = "SELECT * FROM `san_pham` order by `ma_sp` desc limit '$start','$limit'";
+    $sql = "SELECT * FROM `san_pham` join `danh_muc` where `san_pham`.`ma_dm`=`danh_muc`.`ma_dm` order by `ma_sp` desc limit $start,$limit";
     $sanpham = pdo_query($sql);
     return $sanpham;
 }
-function loadall_sanpham_top10()
+function loadall_sanpham_top3()
 {
-    $sql = "SELECT * FROM `san_pham` order by `so_luot_xem` desc limit 0,9";
+    $sql = "SELECT * FROM `san_pham` order by `slx` desc limit 0,3";
     $sanpham = pdo_query($sql);
     return $sanpham;
 }
@@ -121,9 +121,12 @@ function loadall_sanpham_bySize($size)
     } else {
         $sp = [];
     }
-
-
-
     return $sp;
+}
+
+function update_dm_sp($iddm)
+{
+    $sql = "UPDATE `san_pham` SET `ma_dm` = 0 WHERE `san_pham`.`ma_dm` = '$iddm'";
+    pdo_execute($sql);
 }
 ?>

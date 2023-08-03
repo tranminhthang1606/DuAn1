@@ -50,7 +50,7 @@
             </div>
             <div class="row mb10">
                 <label for="">Ngày nhập</label><br>
-                <input type="date" name="ngaynhap"><br>
+                <input type="date" name="ngaynhap" value="<?php echo date('Y-m-d');?>"><br>
             </div>
             <div class="row mb10">
                 <label for="">Loại</label><br>
