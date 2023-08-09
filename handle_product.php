@@ -18,6 +18,11 @@ $current_ma_size = array_unique($current_ma_size);
 $current_ma_color = array_unique($current_ma_color);
 $list_mau = loadall_color_bysp($current_ma_color);
 $list_size = loadall_size_bysp($current_ma_size);
+if(isset(loadone_soluong_from_variants($idsp)['tổng'])){
+    $so_luong_current = loadone_soluong_from_variants($idsp)['tổng'];
+}else{
+    $so_luong_current = 0;
+}
 
 
 ?>
@@ -46,13 +51,11 @@ $list_size = loadall_size_bysp($current_ma_size);
     <p>
         <?php echo $sp_pop['ten_sp'] ?>
     </p>
-    <h4>$
-        <?php echo $sp_pop['don_gia'] ?>
+    <h4>
+        <?php echo $sp_pop['don_gia'] ?> VNĐ
     </h4>
     <p>
-        <?php echo $sp_pop['mo_ta'] ?>
     </p>
-
 
     <div class="option-product">
         <form action="index.php?act=addtocart" method="post">
@@ -97,16 +100,27 @@ $list_size = loadall_size_bysp($current_ma_size);
                 <tr>
                     <td></td>
                     <td>
-                        <button>-</button>
-                        <input type="number" min="0" name="quantity" placeholder="1" value="1">
-                        <button>+</button>
+                        
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
+                     <?php
+                     if($so_luong_current==0){
+                        ?>
+                        <h3> <i>Hết hàng</i> </h3>
+                        <?php
+                     }else{
+                        ?>
                         <input type="submit" name="add_sp_to_cart" value="ADD TO CART" id="a">
+                        <?php
+                     }
+                     ?>
+                        
                     </td>
+                    
+
                 </tr>
             </table>
         </form>

@@ -73,11 +73,7 @@
                 </div>
 
                 <div class="right-news-main">
-                    <div class="search-right-news-main">
-                        <input type="text" placeholder="Search">
-                        <i class='bx bx-search-alt-2 bx-flashing'></i>
-                    </div>
-
+                    
                     <h3>Categories</h3>
 
                     <div class="list" data-aos="fade-down">

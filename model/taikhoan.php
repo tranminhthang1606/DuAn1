@@ -5,6 +5,12 @@ function loadall_taikhoan()
     $khachhang = pdo_query($sql);
     return $khachhang;
 }
+function loadall_taikhoan_admin($start, $limit)
+{
+    $sql = "SELECT * FROM `khach_hang` order by `ma_kh` desc limit $start,$limit";
+    $sanpham = pdo_query($sql);
+    return $sanpham;
+}
 function load_taikhoan_vaitro()
 {
     $sql = "SELECT `vai_tro` FROM `khach_hang`";
@@ -51,6 +57,19 @@ function filter_taikhoan($vaitro, $keyword)
         $sql .= " and `vai_tro` = $vaitro";
     }
     $sql .= " order by `ma_kh` desc";
+    $kh = pdo_query($sql);
+    return $kh;
+}
+function filter_taikhoan_pagination($vaitro, $keyword, $start, $limit)
+{
+    $sql = "select * from `khach_hang` where 1";
+    if ($keyword != "") {
+        $sql .= " and `email` like '%$keyword%'";
+    }
+    if ($vaitro != "") {
+        $sql .= " and `vai_tro` = $vaitro";
+    }
+    $sql .= " order by `ma_kh` desc limit $start,$limit";
     $kh = pdo_query($sql);
     return $kh;
 }

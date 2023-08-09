@@ -12,9 +12,10 @@ include "../model/color.php";
 include "../model/size.php";
 include "../model/tt_sanpham.php";
 include "../model/payments.php";
-include "../model/pagination.php";
-include "header.php";
+
+
 session_start();
+include "header.php";
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -66,7 +67,6 @@ if (isset($_GET['act'])) {
                 } else {
                     $thongbao = "Hãy kiểm tra lại định dạng";
                 }
-                print_r(gettype($_POST['dongia']));
             }
             include "sanpham/add.php";
             break;
@@ -100,21 +100,22 @@ if (isset($_GET['act'])) {
             break;
 
         case "listdm":
-            $danhmuc = loadall_danhmuc();
+            $method = loadall_danhmuc();
+            include "../model/pagination.php";
+            $danhmuc = loadall_danhmuc_admin($page_first_result, $result_per_page);
             include "danhmuc/list.php";
             break;
         case "listsp":
             if (isset($_POST['filter']) && $_POST['filter']) {
                 $id = $_POST['iddm'];
                 $search = $_POST['keyword'];
-                $sanpham = filter_sanpham($id, $search);
-                include "sanpham/list.php";
-                return;
             } else {
                 $id = "all";
                 $search = "";
             }
-            $sanpham = loadall_sanpham_admin($page_first_result, $result_per_page);
+            $method = filter_sanpham($id, $search);
+            include "../model/pagination.php";
+            $sanpham = filter_sanpham_pagination($id, $search, $page_first_result, $result_per_page);
             include "sanpham/list.php";
             break;
         case "list_tt_sp":
@@ -139,7 +140,9 @@ if (isset($_GET['act'])) {
                 $color = 0;
                 $size = 0;
             }
-            $sanpham = filter_tt_sanpham($kyw, $color, $size);
+            $method = filter_tt_sanpham($kyw, $color, $size);
+            include "../model/pagination.php";
+            $sanpham = filter_ttsp_pagination($kyw, $color, $size, $page_first_result, $result_per_page);
             include "tt_sanpham/list.php";
             break;
         case "xoadm":
@@ -149,7 +152,7 @@ if (isset($_GET['act'])) {
                 delete_danhmuc($id);
             }
             $danhmuc = loadall_danhmuc();
-            include "danhmuc/list.php";
+            header("location:index.php?act=listdm");
             break;
         case "xoasp":
             if (isset($_GET['id'])) {
@@ -157,16 +160,14 @@ if (isset($_GET['act'])) {
                 delete_tt_sp_byIDSP($id);
                 delete_sanpham($id);
             }
-            $sanpham = loadall_sanpham();
-            include "sanpham/list.php";
+            header("location:index.php?act=listsp");
             break;
         case "xoa_tt_sp":
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_tt_sp($id);
             }
-            $sanpham = loadall_tt_sanpham();
-            include "tt_sanpham/list.php";
+            header("location:index.php?act=list_tt_sp");
             break;
         case "suadm":
             if (isset($_GET['id'])) {
@@ -228,7 +229,7 @@ if (isset($_GET['act'])) {
                 }
             }
             $sanpham = loadall_sanpham();
-            include "sanpham/list.php";
+            header("location:index.php?act=listsp");
             break;
         case "updatedm":
             if (isset($_POST['capnhap']) && $_POST['capnhap']) {
@@ -241,8 +242,7 @@ if (isset($_GET['act'])) {
                     $thongbao = "Cập nhập thất bại";
                 }
             }
-            $danhmuc = loadall_danhmuc();
-            include "danhmuc/list.php";
+            header("location:index.php?act=listdm");
             break;
         case "update_tt_sp":
             if (isset($_POST['update_tt_sp']) && $_POST['update_tt_sp']) {
@@ -253,12 +253,7 @@ if (isset($_GET['act'])) {
                 update_tt_sanpham($mbt, $ma_sp, $color, $size);
                 $thongbao = "Thêm thành công";
             }
-            $sanpham = loadall_tt_sanpham();
-            include "tt_sanpham/list.php";
-            break;
-        case "dskh":
-            $taikhoan = loadall_taikhoan();
-            include "taikhoan/list.php";
+            header("location:index.php?act=list_tt_sp");
             break;
         case "suakh":
             if (isset($_GET['id'])) {
@@ -274,7 +269,7 @@ if (isset($_GET['act'])) {
                 session_destroy();
             }
             $taikhoan = loadall_taikhoan();
-            include "taikhoan/list.php";
+            header("location:index.php?act=listkh");
             break;
         case "update_tk":
             if (isset($_POST['update']) && $_POST['update']) {
@@ -304,7 +299,7 @@ if (isset($_GET['act'])) {
                     $thongbao = "Cập nhập thành công";
                     $taikhoan_edit = loadone_taikhoan($email, $password);
                     $taikhoan = loadall_taikhoan();
-                    include "taikhoan/list.php";
+                    header("location:index.php?act=listkh");
                 } else {
                     $thongbao = "Cập nhập thất bại";
                     $taikhoan_edit = loadone_taikhoan_byID($id_kh);
@@ -321,7 +316,9 @@ if (isset($_GET['act'])) {
                 $kyw = "";
                 $vaitro = "";
             }
-            $taikhoan = filter_taikhoan($vaitro, $kyw);
+            $method = filter_taikhoan($vaitro, $kyw);
+            include "../model/pagination.php";
+            $taikhoan = filter_taikhoan_pagination($vaitro, $kyw, $page_first_result, $result_per_page);
             include "taikhoan/list.php";
             break;
         case "addtk":
@@ -371,8 +368,6 @@ if (isset($_GET['act'])) {
                     delete_sanpham($list_delItem[$i]);
                 }
             }
-            $sanpham = loadall_sanpham();
-
             header("location:index.php?act=listsp");
             break;
         case "delAllDm":
@@ -383,8 +378,6 @@ if (isset($_GET['act'])) {
                     delete_danhmuc($list_delItem[$i]);
                 }
             }
-            $danhmuc = loadall_danhmuc();
-
             header("location:index.php?act=listdm");
             break;
 
@@ -396,19 +389,30 @@ if (isset($_GET['act'])) {
                     delete_taikhoan($list_delItem[$i]);
                 }
             }
-            $taikhoan = loadall_taikhoan();
 
             header("location:index.php?act=listkh");
             break;
         case "payments":
             if (isset($_POST['filter']) && $_POST['filter']) {
                 $ma_hd = $_POST['ma_hd'];
-                $payments = loadall_bills($ma_hd);
-                include "payments/list.php";
-                return;
+            } else {
+                $ma_hd = "";
             }
-            $payments = loadall_bills("");
+            $method = loadall_bills($ma_hd);
+            include "../model/pagination.php";
+            $payments = filter_payments_pagination($ma_hd,$page_first_result, $result_per_page);
             include "payments/list.php";
+            break;
+        case "sua_trang_thai":
+            $id = $_GET['id'];
+            $bill = loadone_bill($id);
+            include "payments/update.php";
+            break;
+        case "update_trang_thai":
+            $id = $_POST['id'];
+            $trangthai= $_POST['trangthai'];
+            update_trang_thai($id,$trangthai);
+            header("location:index.php?act=payments");
             break;
 
 

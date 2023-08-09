@@ -28,20 +28,20 @@
             <div class="list-menu">
                 <ul>
                     <li>
-                        <a href="index.php?act=home" id="home"> Home
+                        <a href="index.php?act=home" id="home"> Trang chủ
 
                         </a>
                     </li>
-                    <li><a href="index.php?act=shop">Shop</a></li>
-                    <li><a href="index.php?act=blog">Blog</a></li>
-                    <li><a href="index.php?act=about">About</a></li>
-                    <li><a href="index.php?act=contact">Contact</a></li>
+                    <li><a href="index.php?act=shop">Gian hàng</a></li>
+                    <li><a href="index.php?act=blog">Bài viết</a></li>
+                    <li><a href="index.php?act=about">Về chúng tôi</a></li>
+                    <li><a href="index.php?act=contact">Liên hệ</a></li>
                 </ul>
             </div>
             <div class="list-icon" id="list-icon">
                 <form action="index.php?act=shop" method="post">
                     <div class="icons search" id="iconSearch">
-                        <input type="text" id="input_search" name="keyword" placeholder="New Product..?">
+                        <input type="text" id="input_search" name="keyword" placeholder="Bạn muốn tìm gì ?">
                         <button type="submit" name="search"> <i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </form>

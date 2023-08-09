@@ -43,6 +43,7 @@
                     <th>Tên Sp</th>
                     <th>Màu</th>
                     <th>Size</th>
+                    <th>Số lượng</th>
                 </tr>
                 <form action="index.php?act=delAllSp" method="post">
                 <?php
@@ -62,6 +63,9 @@
                         <td>
                         <?php echo loadone_size($item['ma_size'])['ten_size'] ?>
                         </td>
+                        <td>
+                        <?php echo $item['so_luong'] ?>
+                        </td>
                         <td><a href="index.php?act=sua_tt_sp&id=<?php echo $item['ma_bien_the'] ?>"><input type="button" name=""
                             value="SỬA"></a><a href="index.php?act=xoa_tt_sp&id=<?php echo $item['ma_bien_the'] ?>"><input
                             type="button" name="" value="XÓA" onclick="return confirm('Bạn có chắc chắn muốn xóa')"></a></td>
@@ -71,6 +75,36 @@
                 ?>
 
             </table>
+            <div class="pagination">
+                <?php
+                if ($page != 1) {
+                    ?>
+                    <a href="index.php?act=list_tt_sp&page=<?php echo $page - 1 ?>">&laquo;</a>
+                    <?php
+                }
+                ?>
+
+                <?php
+                for ($i = 0; $i < $pages; $i++) {
+                    ?>
+                    <a class="<?php if ($page == ($i + 1)) {
+                        echo "active";
+                    } else {
+                        echo "";
+                    } ?>" href="index.php?act=list_tt_sp&page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a>
+                    <?php
+                }
+                ?>
+                <?php
+                if ($page != $pages) {
+                    ?>
+
+                    <a href="index.php?act=list_tt_sp&page=<?php echo $page + 1 ?>">&raquo;</a>
+                    <?php
+                }
+                ?>
+
+            </div>
         </div>
         <div class="row mb10">
             <input type="button" value="CHỌN TẤT CẢ" id="selectAll">

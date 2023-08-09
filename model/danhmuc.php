@@ -5,6 +5,12 @@ function loadall_danhmuc()
     $danhmuc = pdo_query($sql);
     return $danhmuc;
 }
+function loadall_danhmuc_admin($start, $limit)
+{
+    $sql = "SELECT * FROM `danh_muc` order by `ma_dm` desc limit $start,$limit";
+    $sanpham = pdo_query($sql);
+    return $sanpham;
+}
 function loadall_danhmuc_home($start, $limit)
 {
     $sql = "SELECT * FROM `danh_muc` order by `ma_dm` limit $start,$limit";

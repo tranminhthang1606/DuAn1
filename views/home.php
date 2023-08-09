@@ -35,9 +35,9 @@
 
       <div class="title-slider">
         <div class="text-animation">
-          <h5>Men Collection 2018</h5>
-          <h3>NEW ARRIVALS</h3>
-          <a href="index.php?act=shop"><button>SHOP NOW</button></a>
+          <h5>Men Collection 2023</h5>
+          <h3>Sắp ra mắt</h3>
+          <a href="index.php?act=shop"><button>Mua ngay</button></a>
         </div>
       </div>
 
@@ -68,10 +68,10 @@
               <h2>
                 <?php echo $item['ten_dm'] ?>
               </h2>
-              <p>Let's Try</p>
+              <p></p>
             </div>
             <div class="content-text-2">
-             <a href="index.php?act=shop"> <h3>Shop Now</h3></a>
+             <a href="index.php?act=shop"> <h3>Mua ngay</h3></a>
               <span></span>
             </div>
           </div>
@@ -84,11 +84,11 @@
     </div>
     <div class="product">
       <div class="text-product">
-        <h3>Product Overview</h3>
+        <h3>Sản phẩm của chúng tôi</h3>
         <div class="menu-filter-product">
           <div class="menu-product">
             <ul>
-              <li><a href="index.php?act=home&id=0">All Products</a></li>
+              <li><a href="index.php?act=home&id=0">Tất cả</a></li>
               <?php
               foreach ($danh_muc as $item) {
                 ?>
@@ -109,7 +109,7 @@
 
       </div>
       <div class="btn-product" id="loadmore">
-        LOAD MORE
+        Xem thêm
       </div>
     </div>
 
@@ -167,23 +167,18 @@
             $.each(data, function (index, product) {
               html += `<div class="item-image-product" data-aos="fade-up">
             <div class="test">
-              <img src="upload/${product['anh_sp']}" width="100%" alt="">
+            <a href="index.php?act=detail&id=${product['ma_sp']}"><img src="upload/${product['anh_sp']}" width="100%" alt=""></a>
             </div>
             <p><a class="show_product" onclick="showProduct()" data-id=${product['ma_sp']}>Quick View</a></p>
             <div class="name-item-image-product">
               <div class="price-name-item-image-product">
                 <p>
-                  ${product['ten_sp']}
+                <a href="index.php?act=detail&id=${product['ma_sp']}">${product['ten_sp']}</a>
                 </p>
                 <p>
-                  ${product['don_gia']} VNĐ
+                <a href="index.php?act=detail&id=${product['ma_sp']}">${product['don_gia']} VNĐ</a>
                 </p>
               </div>
-              <div class="heart-name-item-image-product">
-
-                <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-              </div>
-
             </div>
 
           </div>`

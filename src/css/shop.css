@@ -284,17 +284,7 @@ html {
   position: relative;
 }
 
-#header .list-icon .icons:nth-child(2)::before {
-  content: "2";
-  font-size: 10px;
-  background-color: #6c7ae0;
-  position: absolute;
-  color: #fff;
-  padding: 0 4px;
-  border-radius: 20px;
-  top: 2px;
-  right: 0;
-}
+
 
 #header .list-icon .icons:nth-child(3)::before {
   content: "0";
@@ -666,6 +656,11 @@ html {
 
 .price-name-item-image-product p {
   padding-top: 10px;
+  color: #888;
+  cursor: pointer;
+}
+.price-name-item-image-product a {
+  text-decoration: none;
   color: #888;
   cursor: pointer;
 }

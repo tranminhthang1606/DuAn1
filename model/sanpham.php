@@ -39,7 +39,7 @@ function filter_sanpham($id, $keyword)
 {
     $sql = "select * from `san_pham` join `danh_muc` where `san_pham`.`ma_dm`=`danh_muc`.`ma_dm`";
     if ($keyword != "") {
-        $sql .= " and `ten_sp` like '%$keyword%'";
+        $sql .= " and `san_pham`.`ten_sp` like '%$keyword%'";
     }
     if ($id != "all") {
         $sql .= " and `san_pham`.`ma_dm`='$id'";
@@ -55,6 +55,34 @@ function loadall_sanpham_admin($start, $limit)
     $sanpham = pdo_query($sql);
     return $sanpham;
 }
+function filter_sanpham_pagination($id, $keyword, $start, $limit)
+{
+    $sql = "select * from `san_pham` join `danh_muc` where `san_pham`.`ma_dm`=`danh_muc`.`ma_dm`";
+    if ($keyword != "") {
+        $sql .= " and `ten_sp` like '%$keyword%'";
+    }
+    if ($id != "all") {
+        $sql .= " and `san_pham`.`ma_dm`='$id'";
+    }
+    $sql .= " order by `ma_sp` desc limit $start,$limit";
+    $sanpham = pdo_query($sql);
+    return $sanpham;
+}
+
+function loadone_soluong_from_variants($ma_sp) {
+    $sql = "Select sum(`so_luong`) as `tổng` from `sp_variants` where `ma_sp`='$ma_sp' group by `ma_sp` order by `ma_bien_the` desc";
+    $sanpham = pdo_query_one($sql);
+    return $sanpham;
+};
+
+function loadone_soluong_from_variants_bycolorsize($ma_sp,$color,$size) {
+    $sql = "Select sum(`so_luong`) as `tổng` from `sp_variants` where `ma_sp`='$ma_sp' 
+    and `ma_mau`='$color' 
+    and `ma_size`='$size' 
+    group by `ma_sp` order by `ma_bien_the` desc";
+    $sanpham = pdo_query_one($sql);
+    return $sanpham;
+};
 function loadall_sanpham_top3()
 {
     $sql = "SELECT * FROM `san_pham` order by `slx` desc limit 0,3";
@@ -67,6 +95,15 @@ function loadall_sanpham_cungloai($ma_dm)
     $sql = "SELECT * FROM `san_pham`";
     if ($ma_dm > 0) {
         $sql .= " where `ma_dm`=$ma_dm";
+    }
+    $sp = pdo_query($sql);
+    return $sp;
+}
+function loadsome_sanpham_cungloai($ma_dm)
+{
+    $sql = "SELECT * FROM `san_pham`";
+    if ($ma_dm > 0) {
+        $sql .= " where `ma_dm`=$ma_dm ORDER BY RAND() limit 4";
     }
     $sp = pdo_query($sql);
     return $sp;

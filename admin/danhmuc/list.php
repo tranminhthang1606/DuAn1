@@ -37,6 +37,37 @@
                 
 
             </table>
+            <div class="pagination">
+                <?php
+                if ($page != 1) {
+                    ?>
+                    <a href="index.php?act=listdm&page=<?php echo $page - 1 ?>">&laquo;</a>
+                    <?php
+                }
+                ?>
+
+                <?php
+                for ($i = 0; $i < $pages; $i++) {
+                    ?>
+                    <a class="<?php if ($page == ($i + 1)) {
+                        echo "active";
+                    } else {
+                        echo "";
+                    } ?>" href="index.php?act=listdm&page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a>
+                    <?php
+                }
+                ?>
+                <?php
+                if ($page != $pages) {
+                    ?>
+
+                    <a href="index.php?act=listdm&page=<?php echo $page + 1 ?>">&raquo;</a>
+                    <?php
+                }
+                ?>
+
+            </div>
+            
         </div>
         <div class="row mb10">
             <input type="button" value="CHỌN TẤT CẢ" id="selectAll">

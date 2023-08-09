@@ -21,6 +21,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <title>Features</title>
 </head>
 
@@ -43,12 +44,13 @@
             <div class="table-cart" data-aos="zoom-out-right">
                 <table>
                     <tr>
-                        <th>IMG</th>
-                        <th>PRODUCT</th>
-                        <th>PRICE</th>
-                        <th>QUANTITY</th>
-                        <th>COLOR SIZE</th>
-                        <th>TOTAL</th>
+                        <th>Ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Màu & Size</th>
+                        <th>Tổng</th>
+                        <th>Xóa</th>
                     </tr>
 
                     <?php
@@ -65,30 +67,39 @@
                                 <td>
                                     <?php echo $item['name'] ?>
                                 </td>
-                                <td>$ <span class="single_price">
+                                <td> <span class="single_price">
                                         <?php echo $item['price'] ?>
                                     </span></td>
                                 <td>
-                                    <i class='bx bxs-down-arrow'></i>
-                                    <input type="text" class="quantity" value="<?php echo $item['quantity'] ?>" id=""
-                                        data-product='<?php echo $item['id'] ?>'>
-                                    <i class='bx bxs-up-arrow'></i>
+                                    <i class='bx bxs-down-arrow' data-id='<?php echo $item['id'] ?>'
+                                        data-color="<?php echo $item['color'] ?>" data-size="<?php echo $item['size'] ?>"></i>
+                                    <input type="text" class="quantity" value="<?php echo $item['quantity'] ?>"
+                                        max="<?php echo loadone_soluong_from_variants_bycolorsize($item['id'], $item['color'], $item['size'])['tổng'] ?>"
+                                        id="" data-id='<?php echo $item['id'] ?>' disabled>
+                                    <i class='bx bxs-up-arrow' data-id='<?php echo $item['id'] ?>'
+                                        data-color="<?php echo $item['color'] ?>" data-size="<?php echo $item['size'] ?>"></i>
                                 </td>
                                 <td>
-                                    <?php echo $item['color'] ?>/
-                                    <?php echo $item['size'] ?>
+                                    <?php echo loadone_color($item['color'])['ten_mau'] ?>
+                                    <?php echo loadone_size($item['size'])['ten_size'] ?>
                                 </td>
-                                <td>$ <span class='total_sp'>
+                                <td> <span class='total_sp'>
                                         <?php echo ($item['price'] * $item['quantity']) ?>
                                     </span></td>
+                                <td>
+                                    <a href="index.php?act=delCartItem&id=<?php echo $item['id'] ?>&color=<?php echo $item['color'] ?>&size=<?php echo $item['size'] ?>"
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa')"><i
+                                            class="fa-solid fa-trash"></i></a>
+                                </td>
                             </tr>
                             <?php
                         }
                     } ?>
 
 
+
                     <tr>
-                        <td id="total_table" colspan="5">TOTAL</td>
+                        <td id="total_table" colspan="6">Tổng</td>
                         <td id="price_total">
                             <?php echo $totalPrice ?>
                         </td>
@@ -106,12 +117,12 @@
             <div class="cart-total" data-aos="zoom-out-left">
 
 
-                <h3>CART TOTALS</h3>
+                <h3>Tổng giỏ hàng</h3>
 
 
                 <div class="Subtotal">
-                    <p>Subtotal:</p>
-                    <p>$<span class="Subtotal_val"></span>
+                    <p>Tổng tạm tính:</p>
+                    <p><span class="Subtotal_val"></span> VNĐ
 
                     </p>
                 </div>
@@ -125,68 +136,61 @@
 
                     <div class="text-shipping">
 
-                        <p> There are no shipping methods available. Please double check your address, or contact us
-                            if you need any help.</p>
-                        <p>CALCULATE SHIPPING</p>
+                        <p> Giao hàng tiêu chuẩn</p>
+                        <p>Phí Ship</p>
                         <form action="" onsubmit="return validateCart()">
                             <select name="" id="option">
-                                <option value="">select a country</option>
-                                <option value="TB">Thai Binh</option>
-                                <option value="HN">Ha Noi</option>
-                                <option value="QL">Quang Lich</option>
+                                <option value="">Thành phố</option>
+
+                                <option value="HN">Nội thành Hà Nội</option>
+                                <option value="NT">Ngoại thành Hà Nội</option>
                             </select>
-                            <!-- <input type="text" id="state" placeholder="State/country">
-                            <input type="text" id="postcode" placeholder="Postcode / Zip"> -->
-                            <!-- <input type="submit" name="" value="UPDATE TOTALS" id=""> -->
+
                         </form>
 
                     </div>
 
                 </div>
-                <!-- <form action="/charge" method="post" id="payment-form">
-                    <div class="form-row">
-                        <label for="card-element">
-                            Credit or debit card
-                        </label>
-                        <div id="card-element">
-                            
-                        </div>
 
-                      
-                        <div id="card-errors" role="alert"></div>
+                <div class="slider_container">
+                    <div>
+                        <form action="index.php?act=checkout" method="post">
+                            <h4>Thanh toán tiền mặt</h4>
+                            <input type="hidden" name="checkout_bill" class="checkout_bill">
+                            <p>Thông tin chi tiết</p>
+                            <input type="text" name="address" placeholder="Địa chỉ">
+                            <input type="text" name="phone_num" placeholder="Số điện thoại">
+                            <input type="text" name="name" placeholder="Tên người nhận">
+                            <input type="submit" value="Thanh toán tiền mặt" name="cash" id="cash">
+                        </form>
                     </div>
+                    <div>
+                        <form action="index.php?act=checkout" method="post">
+                            <h4>Thanh toán bằng thẻ</h4>
+                            <input type="hidden" name="totalPrice" class="checkout_bill">
+                            <p>Thông tin chi tiết</p>
+                            <input type="text" name="address" placeholder="Địa chỉ">
+                            <input type="text" name="phone_num" placeholder="Số điện thoại">
+                            <input type="text" name="name" placeholder="Tên người nhận">
+                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="pk_test_51NTOVbJs5O3gpxcMjNWkJJXQWWc0UKOpXbUXGkHJ0DQOmPGyxL06OkmfG8QHNHe23FANnR6RZ5IThaOkHomA8wNN00Wvx26U7W"
+                                data-amount="" data-name="Coza Shop" data-description="Bill Checkout"
+                                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                data-locale="auto" data-currency="vnd" data-zip-code="true">
+                                </script>
+                        </form>
+                    </div>
+                </div>
 
-                    <button>Submit Payment</button>
-                </form> -->
 
-                <form action="index.php?act=checkout" method="post">
-                    <input type="hidden" name="checkout_bill" class="checkout_bill">
-                    <p>Địa chỉ chi tiết</p>
-                    <input type="text" name="address">
-                    <input type="submit" value="Thanh toán tiền mặt" name="cash" id="">
-                </form>
+
+                <br>
                 <br>
                 <hr>
-                <br>
-                <form action="index.php?act=checkout" method="post">
-                    <input type="hidden" name="checkout_bill" class="checkout_bill">
-                    <p>Địa chỉ chi tiết</p>
-                    <input type="text" name="address">
-                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="pk_test_51NTOVbJs5O3gpxcMjNWkJJXQWWc0UKOpXbUXGkHJ0DQOmPGyxL06OkmfG8QHNHe23FANnR6RZ5IThaOkHomA8wNN00Wvx26U7W"
-                        data-amount="" data-name="Coza Shop" data-description="Bill Checkout"
-                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto"
-                        data-currency="usd" data-zip-code="true">
-                        </script>
-                        <br>
-                        <br>
-                        <hr>
-                    <div class="total-cart">
-                        <p>Total</p>
-                        <p>$<span></span></p>
-                    </div>        
-                </form>
-
+                <div class="total-cart">
+                    <p>Total</p>
+                    <p><span></span> VNĐ</p>
+                </div>
 
             </div>
         </div>
@@ -253,7 +257,7 @@
         let checkout_bill = document.querySelectorAll(".checkout_bill");
         let subtotal = document.querySelector(".Subtotal_val");
         let total_price_value_current = Number(price_total.innerText);
-        let check_change_option = false
+        let check_change_option = false;
         option.addEventListener("change", function () {
             let total_price_value_current_change = Number(price_total.innerText);
             if (option.value != "HN" && option.value != "" && check_change_option == false) {
@@ -275,17 +279,23 @@
 
                 single_price = Number(single_price.innerText);
                 quantity = Number(quantity_value.value);
+                let max_quant = Number(quantity_value.max)
 
-                quantity_value.setAttribute("value", quantity + 1);
-                total_sp.innerText = (quantity_value.value * single_price);
+                if (quantity < max_quant) {
+                    quantity_value.setAttribute("value", quantity + 1);
+                    total_sp.innerText = (quantity_value.value * single_price);
 
-                total_price_value = Number(total_price.innerText) + single_price
-                total_price.innerText = total_price_value;
-                price_total.innerText = Number(price_total.innerText) + single_price;
-                subtotal.innerText = Number(subtotal.innerText) + single_price;
-                for (let i = 0; i < checkout_bill.length; i++) {
-                    checkout_bill[i].setAttribute("value", total_price_value)
+                    total_price_value = Number(total_price.innerText) + single_price
+                    total_price.innerText = total_price_value;
+                    price_total.innerText = Number(price_total.innerText) + single_price;
+                    subtotal.innerText = Number(subtotal.innerText) + single_price;
+                    for (let i = 0; i < checkout_bill.length; i++) {
+                        checkout_bill[i].setAttribute("value", total_price_value)
+                    }
+                } else {
+                    quantity_value.setAttribute("value", max_quant);
                 }
+
             })
 
         });
@@ -302,6 +312,7 @@
                         quantity_value.setAttribute("value", quantity - 1);
                     } else {
                         quantity_value.setAttribute("value", 0);
+
                     }
 
                     total_sp.innerText = (quantity_value.value * single_price);
@@ -335,6 +346,64 @@
         }
         caculate_total_price();
 
+
+    </script>
+    <script>
+        $(".bxs-up-arrow").click(function () {
+            var id = $(this).data("id");
+            var color = $(this).data("color");
+            var size = $(this).data("size");
+            var method = "plus";
+            $.ajax({
+                type: "POST",
+                url: "handle_quantity.php",
+                data: {
+                    productId: id,
+                    color: color,
+                    size: size,
+                    method: method,
+                },
+                success: function (res) {
+                    console.log(res)
+                }
+            })
+        })
+        $(".bxs-down-arrow").click(function () {
+            var id = $(this).data("id");
+            var color = $(this).data("color");
+            var size = $(this).data("size");
+            var method = "minus";
+            $.ajax({
+                type: "POST",
+                url: "handle_quantity.php",
+                data: {
+                    productId: id,
+                    color: color,
+                    size: size,
+                    method: method
+                },
+                success: function (res) {
+                    console.log(res)
+                }
+            })
+        })
+
+
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.slider_container').slick(
+                {
+                    arrows: true,
+                    fade: true,
+                    prevArrow:"<button class='slick_prev'></button>",
+                    nextArrow:"<button class='slick_next'>Chuyển phương thức</button>",
+                }
+            );
+        })
 
     </script>
 

@@ -103,22 +103,19 @@
           ?>
           <div class="item-image-product" data-aos="fade-up">
             <div class="test">
-              <img src="upload/<?php echo $item['anh_sp'] ?>" width="100%" alt="">
+            <a href="index.php?act=detail&id=<?php echo $item['ma_sp']?>"><img src="upload/<?php echo $item['anh_sp']?>" width="100%" alt=""></a>
             </div>
             <p><a class="show_product" onclick="showProduct()" data-id=<?php echo $item['ma_sp'] ?>>Quick View</a></p>
             <div class="name-item-image-product">
               <div class="price-name-item-image-product">
                 <p>
-                  <?php echo $item['ten_sp'] ?>
+                <a href="index.php?act=detail&id=<?php echo $item['ma_sp']?>"><?php echo $item['ten_sp'] ?></a>
                 </p>
                 <p>
-                  <?php echo $item['don_gia'] ?> VNĐ
+                <a href="index.php?act=detail&id=<?php echo $item['ma_sp']?>"><?php echo $item['don_gia'] ?> VNĐ</a>
                 </p>
               </div>
-              <div class="heart-name-item-image-product">
-
-                <i id="bxs" onclick="addHeart()" class='bx bxs-heart'></i>
-              </div>
+              
 
             </div>
 

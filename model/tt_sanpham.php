@@ -5,6 +5,12 @@ function loadall_tt_sanpham()
     $sanpham = pdo_query($sql);
     return $sanpham;
 }
+function loadall_ttsp_admin($start, $limit)
+{
+    $sql = "SELECT * FROM `sp_variants` order by `ma_bien_the` desc limit $start,$limit";
+    $sanpham = pdo_query($sql);
+    return $sanpham;
+}
 function loadone_tt_sanpham($id)
 {
     $sql = "SELECT * FROM `sp_variants` where `ma_bien_the`='$id'";
@@ -41,8 +47,13 @@ function filter_tt_sanpham($keyword, $color, $size)
         for ($i = 0; $i < count($findkyw); $i++) {
             array_push($list_match, $findkyw[$i]['ma_sp']);
         }
-        $list_match = implode(",", $list_match);
-        $sql .= " and `ma_sp` in ($list_match)";
+        if ($list_match != []) {
+            $list_match = implode(",", $list_match);
+            $sql .= " and `ma_sp` in ($list_match)";
+        } else {
+            $sql .= " and `ma_sp` = 0";    
+        }
+        
     }
     if ($color > 0) {
         $sql .= " and `ma_mau`= '$color'";
@@ -50,7 +61,34 @@ function filter_tt_sanpham($keyword, $color, $size)
     if ($size > 0) {
         $sql .= " and `ma_size`='$size'";
     }
-    $sql .= " order by `ma_sp` desc";
+    $sql .= " order by `ma_bien_the` desc";
+    $sanpham = pdo_query($sql);
+    return $sanpham;
+}
+function filter_ttsp_pagination($keyword, $color, $size, $start, $limit)
+{
+    $sql = "select * from `sp_variants` where 1";
+    if ($keyword != "") {
+        $findkyw = pdo_query("Select * from `san_pham` 
+        where `ten_sp` like '%$keyword%'");
+        $list_match = [];
+        for ($i = 0; $i < count($findkyw); $i++) {
+            array_push($list_match, $findkyw[$i]['ma_sp']);
+        }
+        if ($list_match != []) {
+            $list_match = implode(",", $list_match);
+            $sql .= " and `ma_sp` in ($list_match)";
+        } else {
+            $sql .= " and `ma_sp` = 0";    
+        }
+    }
+    if ($color > 0) {
+        $sql .= " and `ma_mau`= '$color'";
+    }
+    if ($size > 0) {
+        $sql .= " and `ma_size`='$size'";
+    }
+    $sql .= " order by `ma_bien_the` desc limit $start,$limit";
     $sanpham = pdo_query($sql);
     return $sanpham;
 }

@@ -1,5 +1,5 @@
 <?php
-$all_result = count(loadall_sanpham());
+$all_result = count($method);
 $result_per_page = 10;
 $pages = ceil($all_result/$result_per_page);
 
