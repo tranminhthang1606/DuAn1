@@ -79,6 +79,7 @@ if (isset($_GET['act'])) {
                 $ma_sp = $_POST['ma_sp'];
                 $color = $_POST['color'];
                 $size = $_POST['size'];
+                $so_luong = $_POST['so_luong'];
                 $current_ma_size = [];
                 $current_ma_color = [];
                 $list_tt_sp = loadall_tt_sanpham_byidsp($ma_sp);
@@ -89,7 +90,7 @@ if (isset($_GET['act'])) {
                 $current_ma_size = array_unique($current_ma_size);
                 $current_ma_color = array_unique($current_ma_color);
                 if (!in_array($color, $current_ma_color) && !in_array($size, $current_ma_size)) {
-                    insert_tt_sanpham($ma_sp, $color, $size);
+                    insert_tt_sanpham($ma_sp, $color, $size,$so_luong);
                     $thongbao = "Thêm thành công";
                 } else {
                     $thongbao = "Mã SP không tồn tại";
@@ -249,7 +250,8 @@ if (isset($_GET['act'])) {
                 $ma_sp = $_POST['ma_sp'];
                 $color = $_POST['color'];
                 $size = $_POST['size'];
-                update_tt_sanpham($mbt, $ma_sp, $color, $size);
+                $so_luong = $_POST['so_luong'];
+                update_tt_sanpham($mbt, $ma_sp, $color, $size,$so_luong);
                 $thongbao = "Thêm thành công";
             }
             header("location:index.php?act=list_tt_sp");

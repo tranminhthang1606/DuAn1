@@ -17,7 +17,9 @@ html {
 #app {
   transition: 0.5s linear;
 }
-
+.item-image-product img{
+  max-height: 250px;
+}
 .account {
   position: relative;
 }

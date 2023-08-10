@@ -40,6 +40,10 @@
                 <br>
             </div>
             <div class="row mb10">
+                <label for="">Số lượng</label><br>
+                <input type="number" name="so_luong" value="<?php echo $sp['so_luong'] ?>"><br>
+            </div>
+            <div class="row mb10">
                 <input type="submit" name="update_tt_sp" value="Cập nhập tt sản phẩm">
                 <input type="reset" value="NHẬP LẠI">
                 <a href="index.php?act=listsp"><input type="button" value="DANH SÁCH"></a>

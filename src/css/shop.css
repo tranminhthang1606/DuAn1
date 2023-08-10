@@ -586,6 +586,9 @@ html {
 .item-image-product {
   position: relative;
 }
+.item-image-product img{
+  max-height: 250px;
+}
 
 .item-image-product > p {
   position: absolute;

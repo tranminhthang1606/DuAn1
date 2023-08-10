@@ -35,6 +35,10 @@
                 <br>
             </div>
             <div class="row mb10">
+                <label for="">Số lượng</label><br>
+                <input type="number" name="so_luong"><br>
+            </div>
+            <div class="row mb10">
                 <input type="submit" name="them_tt_sp" value="THÊM MỚI">
                 <input type="reset" value="NHẬP LẠI">
                 <a href="index.php?act=listsp"><input type="button" value="DANH SÁCH"></a>

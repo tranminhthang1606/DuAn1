@@ -23,17 +23,17 @@ function loadall_tt_sanpham_byidsp($id)
     $sanpham = pdo_query($sql);
     return $sanpham;
 }
-function insert_tt_sanpham($ma_sp, $ma_mau, $ma_size)
+function insert_tt_sanpham($ma_sp, $ma_mau, $ma_size,$so_luong)
 {
     $sql = "INSERT INTO `sp_variants` 
-    (`ma_sp`, `ma_mau`, `ma_size`) 
-    VALUES ('$ma_sp', '$ma_mau', '$ma_size')";
+    (`ma_sp`, `ma_mau`, `ma_size`,`so_luong`) 
+    VALUES ('$ma_sp', '$ma_mau', '$ma_size','$so_luong')";
     pdo_execute($sql);
 }
-function update_tt_sanpham($mbt, $ma_sp, $ma_mau, $ma_size)
+function update_tt_sanpham($mbt, $ma_sp, $ma_mau, $ma_size,$so_luong)
 {
     $sql = "UPDATE `sp_variants` 
-    SET `ma_sp` = '$ma_sp', `ma_mau` = '$ma_mau', `ma_size` = '$ma_size' 
+    SET `ma_sp` = '$ma_sp', `ma_mau` = '$ma_mau', `ma_size` = '$ma_size' ,`so_luong`='$so_luong'
     WHERE `sp_variants`.`ma_bien_the` = '$mbt'";
     pdo_execute($sql);
 }
