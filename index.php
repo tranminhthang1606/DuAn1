@@ -85,7 +85,12 @@ if (isset($_GET['act'])) {
             $list_mau = loadall_color_bysp($current_ma_color);
             $list_size = loadall_size_bysp($current_ma_size);
             $sp_cungloai = loadsome_sanpham_cungloai($sp_pop['ma_dm']);
-            $so_luong_current=loadone_soluong_from_variants($idsp)['tổng'];
+            if(isset(loadone_soluong_from_variants($idsp)['tổng'])){
+                $so_luong_current=loadone_soluong_from_variants($idsp)['tổng'];
+            }else{
+                $so_luong_current=0;
+            }
+            
             include "views/product_detail.php";
             break;
         case 'sign_in':
