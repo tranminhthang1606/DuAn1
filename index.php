@@ -1,6 +1,5 @@
 <?php
 include "model/pdo.php";
-include "model/config.php";
 include "model/danhmuc.php";
 include "model/taikhoan.php";
 include "model/color.php";
