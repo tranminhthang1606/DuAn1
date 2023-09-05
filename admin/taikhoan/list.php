@@ -69,7 +69,9 @@
                                 <?php
                                 if (isset($_SESSION['email']) && $_SESSION['email'] == $item['email']) {
                                     ?>
-                                    <h3> <i>Tài khoản hiện đăng nhập</i> </h3>
+                                    Tài khoản đang đăng nhập
+                                    <a href="index.php?act=suakh&id=<?php echo $item['ma_kh'] ?>"><input type="button" name=""
+                                            value="SỬA"></a>
                                     <?php
                                 } else {
                                     ?>

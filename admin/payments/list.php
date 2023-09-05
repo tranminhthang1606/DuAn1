@@ -48,7 +48,8 @@
                         <td>
                             <?php echo $item['trang_thai'] ?>
                             <br>
-                           <a href="index.php?act=sua_trang_thai&id=<?php echo $item['stripe_charge_id'] ?>"><i class="fa-solid fa-wrench"></i></a>
+                           <a href="index.php?act=sua_trang_thai&id=<?php echo $item['stripe_charge_id'] ?>">Chỉnh sửa <i class="fa-solid fa-wrench"></i></a>
+                           <a href="index.php?act=detail_trang_thai&id=<?php echo $item['stripe_charge_id'] ?>">Chi tiết <i class="fa-solid fa-circle-info"></i></a>
                         </td>
                     
                     </tr>

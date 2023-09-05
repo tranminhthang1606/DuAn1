@@ -73,9 +73,11 @@
                                 <td>
                                     <i class='bx bxs-down-arrow' data-id='<?php echo $item['id'] ?>'
                                         data-color="<?php echo $item['color'] ?>" data-size="<?php echo $item['size'] ?>"></i>
+                                        <br>
                                     <input type="text" class="quantity" value="<?php echo $item['quantity'] ?>"
                                         max="<?php echo loadone_soluong_from_variants_bycolorsize($item['id'], $item['color'], $item['size'])['tổng'] ?>"
                                         id="" data-id='<?php echo $item['id'] ?>' disabled>
+                                        <br>
                                     <i class='bx bxs-up-arrow' data-id='<?php echo $item['id'] ?>'
                                         data-color="<?php echo $item['color'] ?>" data-size="<?php echo $item['size'] ?>"></i>
                                 </td>
@@ -157,6 +159,7 @@
                         <form action="index.php?act=checkout" method="post">
                             <h4>Thanh toán tiền mặt</h4>
                             <input type="hidden" name="checkout_bill" class="checkout_bill">
+                            <input type="hidden" name="date" value="<?php echo date('Y-m-d')?>">
                             <p>Thông tin chi tiết</p>
                             <input type="text" name="address" placeholder="Địa chỉ">
                             <input type="text" name="phone_num" placeholder="Số điện thoại">
@@ -168,6 +171,7 @@
                         <form action="index.php?act=checkout" method="post">
                             <h4>Thanh toán bằng thẻ</h4>
                             <input type="hidden" name="totalPrice" class="checkout_bill">
+                            <input type="hidden" name="date" value="<?php echo date('Y-m-d')?>">
                             <p>Thông tin chi tiết</p>
                             <input type="text" name="address" placeholder="Địa chỉ">
                             <input type="text" name="phone_num" placeholder="Số điện thoại">
@@ -186,7 +190,7 @@
 
                 <br>
                 <br>
-                <hr>
+                
                 <div class="total-cart">
                     <p>Total</p>
                     <p><span></span> VNĐ</p>

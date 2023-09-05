@@ -10,24 +10,24 @@
         <div class="row mb10 formds">
             <table>
                 <tr>
-                    <th>MÃ LOẠI</th>
-                    <th>TÊN LOẠI</th>
+                    <th>Mã Loại</th>
+                    <th>Tên Loại</th>
                     <th>Số Lượng</th>
-                    <th>Giá cao nhất</th>
-                    <th>Giá thấp nhất</th>
-                    <th>Giá trung bình</th>
+                    <th>Doanh Thu</th>
+                    <th>Đơn Vị</th>
+                    
                 </tr>
                 <?php
                 
                 foreach ($list_thongke as $item) {
                     ?>
                     <tr>                 
-                        <td><?php echo $item['maloai'] ?></td>
-                        <td><?php echo $item['tenloai'] ?></td>
+                        <td><?php echo $item['masp'] ?></td>
+                        <td><?php echo $item['tensp'] ?></td>
                         <td><?php echo $item['sl'] ?></td>
-                        <td><?php echo $item['max'] ?></td>
-                        <td><?php echo $item['min'] ?></td>
-                        <td><?php echo $item['trungbinh'] ?></td>
+                        <td><?php echo $item['price'] ?></td>
+                        <td>VNĐ</td>
+                        
                     </tr>
                     <?php
                 }

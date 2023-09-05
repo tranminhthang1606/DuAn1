@@ -15,7 +15,7 @@
                 else{
                      $end=",";};
                 ?>
-                ['<?php echo $item['tenloai'] ?>',<?php echo $item['sl']?>]<?php echo $end ?>
+                ['<?php echo $item['tensp'] ?>',<?php echo $item['price']?>]<?php echo $end ?>
                 <?php
 $i++;
             }
@@ -23,7 +23,7 @@ $i++;
         ]);
 
         var options = {
-            title: 'Biểu đồ phân loại'
+            title: 'Biểu đồ doanh số'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('myChart'));

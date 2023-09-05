@@ -351,6 +351,15 @@ input[type="submit"]:hover,input[type="reset"]:hover,input[type="button"]:hover{
 .text{
   background: rgba(0, 0, 0, 0.7);
 }
+td a {
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+}
+td a:hover{
+  color: orangered;
+  transition: 0.5s;
+}
 .numbertext{
   background: rgba(0, 0, 0, 0.7)
 }

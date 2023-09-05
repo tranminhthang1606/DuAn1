@@ -162,7 +162,7 @@ td {
   transition: 0.2s;
 }
 
-#header .list-menu > ul > li:nth-child(3)::after {
+#header .list-menu > ul > li:nth-child(2)::after {
   content: "HOT";
   font-size: 10px;
   background-color: red;
@@ -254,17 +254,7 @@ td {
 
 
 
-#header .list-icon .icons:nth-child(3)::before {
-  content: "0";
-  font-size: 10px;
-  background-color: #6c7ae0;
-  position: absolute;
-  color: #fff;
-  padding: 0 4px;
-  border-radius: 20px;
-  top: 4px;
-  right: 0;
-}
+
 #iconSearch input {
   float: left;
   width: 0px;
@@ -467,7 +457,7 @@ input {
 .total-cart {
   display: grid;
   grid-template-columns: 3fr 5fr;
-  margin-top: 8px;
+  margin-top: 50px;
 }
 .cart-total > input {
   margin-top: 10px;
@@ -610,12 +600,14 @@ input {
 }
 .slider_container{
   max-width: 400px;
+  height: 200px;
+  margin: 10px 0;
   
 }
 .slick_next{
   
   padding: 10px 20px;
-  margin-top: 10px;
+  margin: 10px 0;
   border-radius: 10px;
   background: transparent;
   font-size: 10px;

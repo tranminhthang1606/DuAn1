@@ -84,12 +84,12 @@ if (isset($_GET['act'])) {
             $list_mau = loadall_color_bysp($current_ma_color);
             $list_size = loadall_size_bysp($current_ma_size);
             $sp_cungloai = loadsome_sanpham_cungloai($sp_pop['ma_dm']);
-            if(isset(loadone_soluong_from_variants($idsp)['tổng'])){
-                $so_luong_current=loadone_soluong_from_variants($idsp)['tổng'];
-            }else{
-                $so_luong_current=0;
+            if (isset(loadone_soluong_from_variants($idsp)['tổng'])) {
+                $so_luong_current = loadone_soluong_from_variants($idsp)['tổng'];
+            } else {
+                $so_luong_current = 0;
             }
-            
+
             include "views/product_detail.php";
             break;
         case 'sign_in':
@@ -207,6 +207,10 @@ if (isset($_GET['act'])) {
                 } else {
                     $_SESSION["cart_item"] = $itemArray;
                 }
+                ;
+                echo "<script type='text/javascript'>
+                alert('Thêm vào giỏ hàng thành công');
+                </script>";
             }
             include "views/cart.php";
             break;
@@ -233,25 +237,38 @@ if (isset($_GET['act'])) {
         case "checkout":
 
             if (isset($_POST['cash']) && $_POST['cash']) {
-                if ($_POST['address'] != "" && preg_match('/^[0-9]{10}+$/', $_POST['phone_num'] && $_POST['name'] != "")) {
+                if ($_POST['address'] != "" && preg_match('/^[0-9]{10}+$/', $_POST['phone_num']) && $_POST['name'] != "") {
                     $token = "cash_" . date("Y-m-d h:i:sa");
                     $totalPrice = $_POST['checkout_bill'];
                     $address = $_POST['address'];
                     $name = $_POST['name'];
                     $phone_num = $_POST['phone_num'];
                     $trang_thai = "Chưa thanh toán";
+                    $date = $_POST['date'];
                     foreach ($_SESSION['cart_item'] as $k => $v) {
+                        $ten_sp = $_SESSION['cart_item'][$k]['name'];
                         $ma_mau = $_SESSION['cart_item'][$k]['color'];
                         $ma_size = $_SESSION['cart_item'][$k]['size'];
-                        $so_luong = loadone_soluong_from_variants_bycolorsize($k, $ma_mau, $ma_size)['tổng'];
+                        $price = $_SESSION['cart_item'][$k]['price'];
+
+                        if (isset(loadone_soluong_from_variants_bycolorsize($k, $ma_mau, $ma_size)['tổng'])) {
+                            $so_luong = loadone_soluong_from_variants_bycolorsize($k, $ma_mau, $ma_size)['tổng'];
+                        } else {
+                            $so_luong = 0;
+                        }
+
                         $sl_des = $_SESSION['cart_item'][$k]['quantity'];
                         $sl_current = $so_luong - $sl_des;
                         $sql = "UPDATE `sp_variants` SET `sp_variants`.`so_luong` = $sl_current WHERE `sp_variants`.`ma_sp` = $k 
                     and `sp_variants`.`ma_mau` = $ma_mau 
                     and `sp_variants`.`ma_size`= $ma_size";
                         pdo_execute($sql);
+                        $sql2 = "INSERT INTO `detail_bills` 
+                        (`ten_sp`, `color`, `size`, `so_luong`, `price`, `ma_hd`) 
+                        VALUES ('$ten_sp', '$ma_mau', '$ma_size', '$sl_des','$price', '$token')";
+                        pdo_execute($sql2);
                     }
-                    $sql = "INSERT INTO `payments` (`customer_name`,`phone`,`amount`,`stripe_charge_id`,`address`,`trang_thai`) VALUES ('$name','$phone_num','$totalPrice','$token','$address','$trang_thai')";
+                    $sql = "INSERT INTO `payments` (`customer_name`,`phone`,`amount`,`stripe_charge_id`,`address`,`trang_thai`,`ngay_mua`) VALUES ('$name','$phone_num','$totalPrice','$token','$address','$trang_thai','$date')";
                     pdo_execute($sql);
                     echo "<script type='text/javascript'>
                 alert('Bạn đã thanh toán thành công');
@@ -277,5 +294,3 @@ if (isset($_GET['act'])) {
 } else {
     include "views/home.php";
 }
-
-?>

@@ -18,9 +18,9 @@ $current_ma_size = array_unique($current_ma_size);
 $current_ma_color = array_unique($current_ma_color);
 $list_mau = loadall_color_bysp($current_ma_color);
 $list_size = loadall_size_bysp($current_ma_size);
-if(isset(loadone_soluong_from_variants($idsp)['tổng'])){
+if (isset(loadone_soluong_from_variants($idsp)['tổng'])) {
     $so_luong_current = loadone_soluong_from_variants($idsp)['tổng'];
-}else{
+} else {
     $so_luong_current = 0;
 }
 
@@ -63,6 +63,7 @@ if(isset(loadone_soluong_from_variants($idsp)['tổng'])){
             <input type="hidden" name="ten_sp" value="<?php echo $sp_pop['ten_sp'] ?>">
             <input type="hidden" name="don_gia" value="<?php echo $sp_pop['don_gia'] ?>">
             <input type="hidden" name="anh_sp" value="<?php echo $sp_pop['anh_sp'] ?>">
+            <input type="hidden" name="quantity" value=1>
             <table>
                 <tr>
                     <td>
@@ -100,26 +101,26 @@ if(isset(loadone_soluong_from_variants($idsp)['tổng'])){
                 <tr>
                     <td></td>
                     <td>
-                        
+
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-                     <?php
-                     if($so_luong_current==0){
-                        ?>
-                        <h3> <i>Hết hàng</i> </h3>
                         <?php
-                     }else{
+                        if ($so_luong_current == 0) {
+                            ?>
+                            <h3> <i>Hết hàng</i> </h3>
+                            <?php
+                        } else {
+                            ?>
+                            <input type="submit" name="add_sp_to_cart" value="ADD TO CART" id="a">
+                            <?php
+                        }
                         ?>
-                        <input type="submit" name="add_sp_to_cart" value="ADD TO CART" id="a">
-                        <?php
-                     }
-                     ?>
-                        
+
                     </td>
-                    
+
 
                 </tr>
             </table>

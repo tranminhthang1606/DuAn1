@@ -1568,7 +1568,7 @@ html {
   transition: .2s;
 }
 
-#header .list-menu>ul>li:nth-child(3)::after {
+#header .list-menu>ul>li:nth-child(2)::after {
   content: "HOT";
   font-size: 10px;
   background-color: red;

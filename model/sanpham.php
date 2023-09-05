@@ -166,4 +166,9 @@ function update_dm_sp($iddm)
     $sql = "UPDATE `san_pham` SET `ma_dm` = 0 WHERE `san_pham`.`ma_dm` = '$iddm'";
     pdo_execute($sql);
 }
+
+function delete_all_sp(){
+    $sql="DELETE from `san_pham`";
+    pdo_execute($sql);
+}
 ?>

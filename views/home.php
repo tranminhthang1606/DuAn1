@@ -71,7 +71,9 @@
               <p></p>
             </div>
             <div class="content-text-2">
-             <a href="index.php?act=shop"> <h3>Mua ngay</h3></a>
+              <a href="index.php?act=shop">
+                <h3>Mua ngay</h3>
+              </a>
               <span></span>
             </div>
           </div>
@@ -163,9 +165,13 @@
           dataType: 'json',
           success: function (result) {
             const data = result.data;
-            let html = ``;
-            $.each(data, function (index, product) {
-              html += `<div class="item-image-product" data-aos="fade-up">
+            const status = result.status;
+            if (status === 0) {
+              $('#loadmore').css('display', 'none');
+            } else {
+              let html = ``;
+              $.each(data, function (index, product) {
+                html += `<div class="item-image-product" data-aos="fade-up">
             <div class="test">
             <a href="index.php?act=detail&id=${product['ma_sp']}"><img src="upload/${product['anh_sp']}" width="100%" alt=""></a>
             </div>
@@ -182,12 +188,16 @@
             </div>
 
           </div>`
-            })
-            $('.image-product').append(html);
+              })
+              $('.image-product').append(html);
+            }
+
+
           }
         })
       }
       loadmore(limit, start);
+
       $('#loadmore').click(function () {
         start += limit;
         loadmore(limit, start)

@@ -11,8 +11,6 @@ include "../model/color.php";
 include "../model/size.php";
 include "../model/tt_sanpham.php";
 include "../model/payments.php";
-
-
 session_start();
 include "header.php";
 if (isset($_GET['act'])) {
@@ -90,7 +88,7 @@ if (isset($_GET['act'])) {
                 $current_ma_size = array_unique($current_ma_size);
                 $current_ma_color = array_unique($current_ma_color);
                 if (!in_array($color, $current_ma_color) && !in_array($size, $current_ma_size)) {
-                    insert_tt_sanpham($ma_sp, $color, $size,$so_luong);
+                    insert_tt_sanpham($ma_sp, $color, $size, $so_luong);
                     $thongbao = "Thêm thành công";
                 } else {
                     $thongbao = "Mã SP không tồn tại";
@@ -251,7 +249,7 @@ if (isset($_GET['act'])) {
                 $color = $_POST['color'];
                 $size = $_POST['size'];
                 $so_luong = $_POST['so_luong'];
-                update_tt_sanpham($mbt, $ma_sp, $color, $size,$so_luong);
+                update_tt_sanpham($mbt, $ma_sp, $color, $size, $so_luong);
                 $thongbao = "Thêm thành công";
             }
             header("location:index.php?act=list_tt_sp");
@@ -366,6 +364,9 @@ if (isset($_GET['act'])) {
                 $list_delItem = $_POST['delItem'];
                 $N = count($list_delItem);
                 for ($i = 0; $i < $N; $i++) {
+                    delete_tt_sp($list_delItem[$i]);
+                }
+                for ($i = 0; $i < $N; $i++) {
                     delete_sanpham($list_delItem[$i]);
                 }
             }
@@ -375,6 +376,8 @@ if (isset($_GET['act'])) {
             if (isset($_POST['delAll']) && $_POST['delAll']) {
                 $list_delItem = $_POST['delItem'];
                 $N = count($list_delItem);
+                delete_all_ttsp();
+                delete_all_sp();
                 for ($i = 0; $i < $N; $i++) {
                     delete_danhmuc($list_delItem[$i]);
                 }
@@ -401,7 +404,7 @@ if (isset($_GET['act'])) {
             }
             $method = loadall_bills($ma_hd);
             include "../model/pagination.php";
-            $payments = filter_payments_pagination($ma_hd,$page_first_result, $result_per_page);
+            $payments = filter_payments_pagination($ma_hd, $page_first_result, $result_per_page);
             include "payments/list.php";
             break;
         case "sua_trang_thai":
@@ -409,10 +412,16 @@ if (isset($_GET['act'])) {
             $bill = loadone_bill($id);
             include "payments/update.php";
             break;
+        case "detail_trang_thai":
+            $id = $_GET['id'];
+            $info = loadone_bill($id);
+            $bill_details = load_detail_bill($id);
+            include "payments/details.php";
+            break;
         case "update_trang_thai":
             $id = $_POST['id'];
-            $trangthai= $_POST['trangthai'];
-            update_trang_thai($id,$trangthai);
+            $trangthai = $_POST['trangthai'];
+            update_trang_thai($id, $trangthai);
             header("location:index.php?act=payments");
             break;
 

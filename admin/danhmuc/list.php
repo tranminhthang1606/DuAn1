@@ -15,26 +15,28 @@
                     <th></th>
                 </tr>
                 <form action="index.php?act=delAllDm" method="post">
-                <?php
-                foreach ($danhmuc as $item) {
-                    ?>
-                    <tr>
-                        <td><input type="checkbox" name="delItem[]" value="<?php echo $item['ma_dm'] ?>"></td>
-                        <td>
-                            <?php echo $item['ma_dm'] ?>
-                        </td>
-                        <td>
-                            <?php echo $item['ten_dm'] ?>
-                        </td>
-                        <td><a href="index.php?act=suadm&id=<?php echo $item['ma_dm'] ?>"><input type="button" name=""
-                                    value="SỬA"></a><a href="index.php?act=xoadm&id=<?php echo $item['ma_dm'] ?>"><input
-                                    type="button" name="" value="XÓA" onclick="return confirm('Bạn có chắc chắn muốn xóa')"></a></td>
-                    </tr>
                     <?php
-                    # code...
-                }
-                ?>
-                
+                    foreach ($danhmuc as $item) {
+                        if ($item['ma_dm'] != 0) {
+                            ?>
+                            <tr>
+                                <td><input type="checkbox" name="delItem[]" value="<?php echo $item['ma_dm'] ?>"></td>
+                                <td>
+                                    <?php echo $item['ma_dm'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $item['ten_dm'] ?>
+                                </td>
+                                <td><a href="index.php?act=suadm&id=<?php echo $item['ma_dm'] ?>"><input type="button" name=""
+                                            value="SỬA"></a><a href="index.php?act=xoadm&id=<?php echo $item['ma_dm'] ?>"><input
+                                            type="button" name="" value="XÓA"
+                                            onclick="return confirm('Bạn có chắc chắn muốn xóa')"></a></td>
+                            </tr>
+                            <?php
+                        } # code...
+                    }
+                    ?>
+
 
             </table>
             <div class="pagination">
@@ -67,12 +69,13 @@
                 ?>
 
             </div>
-            
+
         </div>
         <div class="row mb10">
             <input type="button" value="CHỌN TẤT CẢ" id="selectAll">
             <input type="button" value="BỎ CHỌN TẤT CẢ" id="unselectAll">
-            <input type="submit" value="XÓA CÁC MỤC ĐÃ CHỌN" name="delAll" id="delAll" onclick="return confirm('Bạn có chắc chắn muốn xóa')">
+            <input type="submit" value="XÓA CÁC MỤC ĐÃ CHỌN" name="delAll" id="delAll"
+                onclick="return confirm('Bạn có chắc chắn muốn xóa')">
             <a href="index.php?act=adddm"><input type="button" value="NHẬP THÊM"></a>
         </div>
         </form>

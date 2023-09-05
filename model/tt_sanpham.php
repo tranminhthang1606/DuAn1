@@ -102,4 +102,8 @@ function delete_tt_sp_byIDSP($id)
     $sql = "DELETE FROM sp_variants WHERE `sp_variants`.`ma_sp` = '$id'";
     pdo_execute($sql);
 }
+function delete_all_ttsp(){
+    $sql="DELETE from `sp_variants`";
+    pdo_execute($sql);
+}
 ?>
